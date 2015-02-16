@@ -1,0 +1,29 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+	<TextView 
+	    android:id="@+id/out"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"/>
+
+	<LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+
+		<ListView
+			android:id="@+id/gallery"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hapticFeedbackEnabled="true"
+			android:layout_gravity="center"
+			android:scrollingCache="false"
+			android:divider="@color/grey"
+			android:dividerHeight="1dp"
+			
+			/>
+	        
+        	
+	    	    	     	     	    	    	            
+	</LinearLayout>
+</RelativeLayout>
+

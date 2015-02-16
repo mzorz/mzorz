@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer name="id_confirm_icon">99997</integer>
+    <integer name="id_edit_icon">99996</integer>
+
+    <integer name="id_menuButton">999991</integer>
+    
+</resources>

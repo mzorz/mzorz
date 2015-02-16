@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/mzorz_bg"
+        android:padding="10dp" >
+
+        <RelativeLayout
+            android:id="@+id/left"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true" >
+
+            <ImageView
+                android:id="@+id/bot_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@drawable/ic_atras" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/right"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" >
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@id/right"
+            android:layout_toRightOf="@id/left"
+            android:orientation="horizontal">
+
+<!--             <com.viewcomponents.FontTextView -->
+<!--                 android:id="@+id/tv_title_menu" -->
+<!--                 style="@style/whiteText" -->
+<!--                 android:text="@string/mn_title" /> -->
+            <!--<ImageView-->
+                <!--android:id="@+id/tv_title_menu"-->
+                <!--android:layout_height="96dp"-->
+                <!--android:layout_width="96dp"-->
+                <!--android:scaleType="fitXY"-->
+    			<!--android:src="@drawable/mz_logo_splash_ic"-->
+                <!--/>-->
+
+             <com.viewcomponents.FontTextView
+                 android:id="@+id/tv_title_menu_txt"
+                 style="@style/whiteText"
+                 android:layout_gravity="center_vertical"
+                 android:textSize="24sp"
+                 android:text="@string/app_name" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bg_actionBarSeparator" />
+    
+    <ScrollView
+        	android:id="@+id/scrollView1"
+	        android:layout_width="match_parent"
+        	android:background="@color/mzorz_bg"
+	        android:layout_height="match_parent">
+        
+		<LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:orientation="vertical" >
+	            
+		    <com.viewcomponents.FontButton
+		        android:id="@+id/btn_news"
+		        style="@style/bg_blue_button"
+		        android:layout_width="fill_parent"
+		        android:gravity="left|center_vertical"
+		        android:drawablePadding="10dp"
+		        android:textSize="18sp"
+		        android:drawableLeft="@drawable/noticias_plano"
+		        android:text="@string/mn_cover" />
+		    
+		    <View android:layout_width="fill_parent" android:layout_height="1dp" android:background="@color/white" android:layout_marginLeft="5dp" android:layout_marginRight="5dp" />
+		    		    
+		    <com.viewcomponents.FontButton
+		        android:id="@+id/btn_events"
+		        style="@style/bg_blue_button"
+		        android:layout_width="fill_parent"
+		        android:gravity="left|center_vertical"
+		        android:drawablePadding="10dp"
+		        android:textSize="18sp"
+		        android:drawableLeft="@drawable/eventos_plano"
+		        android:text="@string/mn_android" />
+		    
+		    <View android:layout_width="fill_parent" android:layout_height="1dp" android:background="@color/white" android:layout_marginLeft="5dp" android:layout_marginRight="5dp" />
+		    
+		    <com.viewcomponents.FontButton
+		        android:id="@+id/btn_artists"
+		        style="@style/bg_blue_button"
+		        android:layout_width="fill_parent"
+		        android:drawableLeft="@drawable/grupos_plano"
+		        android:gravity="left|center_vertical"
+		        android:drawablePadding="10dp"
+		        android:textSize="18sp"
+		        android:text="@string/mn_other" />
+
+		    <View android:layout_width="fill_parent" android:layout_height="1dp" android:background="@color/white" android:layout_marginLeft="5dp" android:layout_marginRight="5dp" />
+		    		    
+			<com.viewcomponents.FontButton
+		        android:id="@+id/btn_venues"
+		        style="@style/bg_blue_button"
+		        android:layout_width="fill_parent"
+		        android:drawableLeft="@drawable/mn_want_96"
+		        android:gravity="left|center_vertical"
+		        android:drawablePadding="10dp"
+		        android:textSize="18sp"
+		        android:text="@string/mn_want" />
+
+		    <View android:layout_width="fill_parent" android:layout_height="1dp" android:background="@color/white" android:layout_marginLeft="5dp" android:layout_marginRight="5dp" />
+
+
+			<com.viewcomponents.FontButton
+		        android:id="@+id/btn_aboutme"
+		        style="@style/bg_blue_button"
+		        android:layout_width="fill_parent"
+		        android:gravity="left|center_vertical"
+		        android:drawablePadding="10dp"
+		        android:textSize="18sp"
+		        android:drawableLeft="@drawable/artistas_plano"
+		        android:text="@string/mn_aboutme" />
+			
+		    <View android:layout_width="fill_parent" android:layout_height="1dp" android:background="@color/white" android:layout_marginLeft="5dp" android:layout_marginRight="5dp" />
+
+
+            <com.viewcomponents.FontButton
+                android:id="@+id/btn_aboutapp"
+                style="@style/bg_blue_button"
+                android:layout_width="fill_parent"
+                android:gravity="left|center_vertical"
+                android:drawablePadding="10dp"
+                android:textSize="18sp"
+                android:drawableLeft="@drawable/sede_plano"
+                android:text="@string/mn_aboutapp" />
+
+            <View android:layout_width="fill_parent" android:layout_height="1dp" android:background="@color/white" android:layout_marginLeft="5dp" android:layout_marginRight="5dp" />
+
+<!-- 			<com.viewcomponents.FontButton -->
+<!-- 		        android:id="@+id/btn_help" -->
+<!-- 		        style="@style/bg_blue_button" -->
+<!-- 		        android:layout_width="fill_parent" -->
+<!-- 		        android:layout_gravity="center" -->
+<!-- 		        android:text="@string/mn_help" /> -->
+				
+<!-- 		    <View android:layout_width="fill_parent" android:layout_height="1dp" android:background="@color/white" android:layout_marginLeft="5dp" android:layout_marginRight="5dp" /> -->
+													    
+	    </LinearLayout>
+    </ScrollView>
+    
+</LinearLayout>

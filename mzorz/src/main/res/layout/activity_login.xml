@@ -1,0 +1,47 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+	<LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <com.viewcomponents.FontTextView
+                android:id="@+id/textView1"
+                style="@style/headerText"
+	        	android:layout_marginTop="5dp"
+                android:text="@string/enter_email" />
+
+            <EditText
+                android:id="@+id/editEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10" />
+
+		    <com.viewcomponents.FontButton
+		        android:id="@+id/btn_login_normal"
+		        style="@style/bg_rounded_button"
+		        android:layout_width="fill_parent"
+		        android:layout_gravity="center"
+		        android:layout_marginTop="5dp"
+		        android:text="@string/login_normal" />
+	            
+	     <include layout="@layout/separator" />
+
+	    <com.viewcomponents.FontButton
+	        android:id="@+id/btn_login_google"
+	        style="@style/bg_rounded_button"
+	        android:layout_width="fill_parent"
+	        android:layout_gravity="center"
+	        android:layout_marginTop="5dp"
+	        android:text="@string/login_google" />
+
+	    <com.viewcomponents.FontButton
+	        android:id="@+id/btn_login_facebook"
+	        style="@style/bg_rounded_button"
+	        android:layout_width="fill_parent"
+	        android:layout_gravity="center"
+	        android:layout_marginTop="5dp"
+	        android:text="@string/login_fb" />
+	    	    	     	     	    	    	            
+	</LinearLayout>
+</RelativeLayout>
+

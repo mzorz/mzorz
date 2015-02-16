@@ -1,0 +1,89 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+
+        -->
+    </style>
+
+    <style name="AppTheme" parent="@android:style/Theme.Light.NoTitleBar">
+
+        <!-- <style name="AppTheme" parent="@style/Holo.Theme.Light.NoActionBar"> -->
+        <!--<item name="switchStyle">@style/switch_light</item>-->
+    </style>
+
+    <style name="activityBG">
+        <item name="android:background">@drawable/bg_tile</item>
+    </style>
+
+    <style name="headerText">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textColor">@color/header_text</item>
+    </style>
+
+    <style name="lightBlueText" parent="headerText">
+        <item name="android:layout_marginTop">@dimen/components_margin_top</item>
+    </style>
+
+    <style name="fieldText">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textColor">@color/field_text</item>
+    </style>
+
+    <style name="whiteText">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="blackText">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    
+    <style name="rounded_button">
+        <item name="android:background">@drawable/selector_rounded_button</item>
+    </style>
+
+    <style name="bg_rounded_button">
+        <item name="android:background">@drawable/selector_rounded_button</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="bg_red_button">
+        <item name="android:background">@drawable/selector_square_red_button</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="bg_blue_button">
+        <item name="android:background">@drawable/selector_square_blue_button</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+    
+	<style name="CustomDialogTheme" parent="@android:style/Theme.Dialog">
+		<item name="android:windowBackground">@color/white</item>
+		<item name="android:windowIsFloating">false</item>
+		<item name="android:windowNoTitle">true</item>
+	</style>
+
+</resources>

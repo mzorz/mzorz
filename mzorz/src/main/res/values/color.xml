@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="light_gray">#bcbec0</color>
+    <color name="orange">#f6a800</color>
+    <color name="green">#19b3b3</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="grey">#333333</color>
+   	<color name="modal">#66000000</color>
+	<color name="bee_bg">#ffcd6a</color>	
+    
+    <color name="bg_bee_actionbar">#ffc551</color>
+	
+    <!-- components -->
+    <color name="gray_bg">#e0dfdd</color>
+    <color name="green_separator">#aed0dc</color>
+    <color name="header_text">#1d91b6</color>
+    <color name="field_text">#676767</color>
+    <color name="mzorz_bg">#0099CC</color>
+    <color name="mzorz_bg_lighter">#99CC</color>
+    <color name="mzorz_bg_dark">#006699</color>
+    <color name="bg_button">#1d91b6</color>
+    <color name="bg_blue_button">#0099CC</color>
+    <color name="bg_red_button">#E51837</color>
+    <color name="bg_actionBar">#2abbd0</color>
+    <color name="bg_actionBarSeparator">#26656b</color>
+    <color name="bg_state_pressed">#20beed</color>
+    <color name="bg_state_blue_pressed">#7E7885</color>
+    <color name="bg_state_red_pressed">#7E7885</color>
+    
+    
+    <!-- components -->
+
+</resources>

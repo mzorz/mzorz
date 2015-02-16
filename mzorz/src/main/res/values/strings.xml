@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Mario Zorz</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_home">MARIO ZORZ</string>
+    
+    
+    <string name="value_not_numeric">El valor ingresado no es un valor numérico</string>
+    <string name="aceptar_lower">Aceptar</string>
+    <string name="cancelar_lower">Cancelar</string>
+    
+    <!-- TABLE CONFIG -->
+    <string name="_id">_id</string>
+    <string name="email">email</string>
+    <string name="first_name">first_name</string>
+    <string name="last_name">last_name</string>
+    <string name="user_id">user_id</string>
+    <string name="device_id">device_id</string>
+    
+    
+    
+    <!-- SLIDING MENU -->
+    <string name="mn_title">OPTIONS</string>
+    <!--<string name="mn_news">NOTICIAS</string>-->
+    <!--<string name="mn_event_list">EVENTOS</string>-->
+    <!--<string name="mn_artists">ARTISTAS</string>-->
+    <!--<string name="mn_venues">SEDES</string>-->
+    <!--<string name="mn_groups">GRUPOS</string>-->
+    <!--<string name="mn_help">AYUDA</string>-->
+
+    <string name="mn_cover">Cover letter</string>
+    <!--<string name="mn_whoiam">Who I am</string>-->
+    <string name="mn_android">All things Android</string>
+    <string name="mn_other">Things I\'ve done elsewhere</string>
+    <string name="mn_want">Things I want to work on</string>
+    <string name="mn_aboutme">More about me</string>
+    <string name="mn_whyme">Why me</string>
+    <string name="mn_aboutapp">About this app</string>
+
+
+    <!-- LOGIN -->
+    <string name="server_login">Fetching data, please wait...</string>
+    <string name="login_google">GOOGLE</string>
+    <string name="login_fb">FACEBOOK</string>
+    <string name="enter_email">Please enter your email address</string>
+    <string name="login_normal">REGISTER / LOGIN</string>
+    <string name="title_login">ACCOUNT LOGIN</string>
+    
+    <string name="error_occurred_server">An error occured while trying to reach the server. Please try again later</string>
+    <string name="error_invalidemail">Please enter a valid email address</string>
+    <string name="accept_lower">Ok</string>
+    <string name="cancel_lower">Cancel</string>
+    <string name="error_no_items_found">No items found for this section</string>
+
+    <string name="no_title">Sin título</string>
+    <string name="no_excerpt">Sin descripción</string>
+    <string name="no_date">Sin fecha</string>
+    <string name="no_data">Sin datos</string>
+    <string name="crash_toast_text">Mario: error in your app, sending error</string>
+    
+    
+</resources>
