@@ -93,7 +93,8 @@ public class ProjectsListAdapter extends BaseAdapter {
         item.title = ((item.title == null) || (item.title.length() == 0)) ? mContext.getResources().getString(R.string.no_title) : item.title;
 		holder.title.setText(Html.fromHtml(item.title));
 
-		holder.description.setText(Html.fromHtml(item.description));
+        item.brief = ((item.brief == null) || (item.brief.length() == 0)) ? mContext.getResources().getString(R.string.no_excerpt) : item.brief;
+		holder.description.setText(Html.fromHtml(item.brief));
 
         String strImgUrl = (item.images != null && item.images.get(0) != null) ? item.images.get(0).url : null;
 

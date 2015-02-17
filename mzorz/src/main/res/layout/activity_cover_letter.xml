@@ -5,19 +5,6 @@
     android:orientation="vertical">
 
 
-    <!--<ScrollView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
-        <!--<com.viewcomponents.FontTextView-->
-            <!--android:id="@+id/coverLetter"-->
-            <!--android:textColor="@color/black"-->
-            <!--android:text="test text"-->
-            <!--android:textAlignment="center"-->
-            <!--android:gravity="fill_horizontal"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"/>-->
-    <!--</ScrollView>-->
-
     <WebView
         android:id="@+id/webview"
         android:layout_width="fill_parent"

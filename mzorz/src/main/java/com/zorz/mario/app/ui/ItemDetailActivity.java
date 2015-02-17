@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +29,8 @@ public class ItemDetailActivity extends BaseActivity {
     protected ProjectItem projectItem;
     private ViewPager viewPager;
     private PageIndicator mIndicator;
+
+    private WebView myWebView;
 
 
 	@Override
@@ -84,9 +87,12 @@ public class ItemDetailActivity extends BaseActivity {
             String strTmp = projectItem.description;
             if (strTmp.length() == 0)
                 strTmp = getContext().getResources().getString(R.string.no_title);
-			TextView txtDesc = (TextView)findViewById(R.id.item_detail);
-			txtDesc.setText(Html.fromHtml(strTmp));
-			
+//			TextView txtDesc = (TextView)findViewById(R.id.item_detail);
+//			txtDesc.setText(Html.fromHtml(strTmp));
+
+            myWebView = (WebView) findViewById(R.id.webview);
+            myWebView.loadData(strTmp,"text/html","utf-8");
+
 		}
 
 

@@ -23,17 +23,12 @@
             />
     </RelativeLayout>
 
-    <ScrollView android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
-        >
-		<TextView 
-		    android:padding="10dp"
-		    android:id="@+id/item_detail"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"/>
-	</ScrollView>
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        />
 
 </LinearLayout>
 
