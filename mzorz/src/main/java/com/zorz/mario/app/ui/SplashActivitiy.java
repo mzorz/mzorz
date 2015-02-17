@@ -1,4 +1,4 @@
-package com.zorz.mario.app;
+package com.zorz.mario.app.ui;
 
 import android.content.Intent;
 import android.os.AsyncTask;

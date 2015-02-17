@@ -1,4 +1,4 @@
-package com.zorz.mario.app;
+package com.zorz.mario.app.ui;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -141,6 +141,10 @@ public class BaseActivity extends FragmentActivity implements OnCancelListener {
 		((RelativeLayout) findViewById(R.id.container_actionbar_left))
 				.addView(view);
 	}
+
+    protected void setActionBarBackgroundColor(int color){
+        ((RelativeLayout) findViewById(R.id.actionBarbkg)).setBackgroundColor(color);
+    }
 
 	// ==== DIALOGS ===== //
 

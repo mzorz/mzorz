@@ -1,0 +1,39 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            />
+        <com.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/indicator"
+            android:padding="10dip"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_alignBottom="@+id/pager"
+            android:background="@color/black_transparent"
+            />
+    </RelativeLayout>
+
+    <ScrollView android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        >
+		<TextView 
+		    android:padding="10dp"
+		    android:id="@+id/item_detail"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"/>
+	</ScrollView>
+
+</LinearLayout>
+

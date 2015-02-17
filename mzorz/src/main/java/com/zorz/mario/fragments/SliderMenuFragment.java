@@ -12,9 +12,9 @@ import android.widget.ImageView;
 
 import com.viewcomponents.FontButton;
 import com.zorz.mario.R;
-import com.zorz.mario.app.BaseActivity;
-import com.zorz.mario.app.CoverLetterActivity;
-import com.zorz.mario.app.PreviousAndroidWorkActivity;
+import com.zorz.mario.app.ui.BaseActivity;
+import com.zorz.mario.app.ui.CoverLetterActivity;
+import com.zorz.mario.app.ui.PreviousAndroidWorkActivity;
 
 public class SliderMenuFragment extends Fragment {
 

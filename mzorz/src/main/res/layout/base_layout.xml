@@ -5,6 +5,7 @@
     android:orientation="vertical" >
 
     <RelativeLayout
+        android:id="@+id/actionBarbkg"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/mzorz_bg" >

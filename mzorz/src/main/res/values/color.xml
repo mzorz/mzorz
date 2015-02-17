@@ -8,8 +8,9 @@
     <color name="black">#000000</color>
     <color name="grey">#333333</color>
    	<color name="modal">#66000000</color>
-	<color name="bee_bg">#ffcd6a</color>	
-    
+	<color name="bee_bg">#ffcd6a</color>
+    <color name="black_transparent">#33000000</color>
+
     <color name="bg_bee_actionbar">#ffc551</color>
 	
     <!-- components -->

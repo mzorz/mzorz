@@ -1,12 +1,10 @@
-package com.zorz.mario.app;
+package com.zorz.mario.app.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Html;
 import android.webkit.WebView;
 import android.widget.Toast;
 
-import com.viewcomponents.FontTextView;
 import com.zorz.mario.Application;
 import com.zorz.mario.R;
 import com.zorz.mario.api.Event;

@@ -39,6 +39,8 @@
     <string name="mn_whyme">Why me</string>
     <string name="mn_aboutapp">About this app</string>
 
+    <string name="app_images">" images"</string>
+
 
     <!-- LOGIN -->
     <string name="server_login">Fetching data, please wait...</string>
