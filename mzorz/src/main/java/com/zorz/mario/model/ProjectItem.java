@@ -3,29 +3,28 @@ package com.zorz.mario.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ProjectItem implements Parcelable {
 
-    public String id_news;
+    public int id;
     public String title;
-    public String excerpt_es;
-    public String body_es;
+    public String description;
     public String date;
-    public String created_ts;
-    public String updated_ts;
-    public PhotoItem photos;
+    public List<PhotoItem> images;
 
     public ProjectItem(){}
 
     protected ProjectItem(Parcel in) {
-        this.id_news = in.readString();
+        this.id = in.readInt();
         this.title = in.readString();
-        this.excerpt_es = in.readString();
-        this.body_es = in.readString();
+        this.description = in.readString();
         this.date = in.readString();
-        this.created_ts = in.readString();
-        this.updated_ts = in.readString();
-        this.photos = in.readParcelable(PhotoItem.class.getClassLoader());
-
+        this.images = in.readArrayList(PhotoItem.class.getClassLoader());
+        if (this.images == null)
+            this.images = new ArrayList<PhotoItem>();
+        in.readTypedList(this.images, PhotoItem.CREATOR);
     }
 
     @Override
@@ -35,15 +34,11 @@ public class ProjectItem implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel out, int flags) {
-        out.writeString(this.id_news);
+        out.writeInt(this.id);
         out.writeString(this.title);
-        out.writeString(this.excerpt_es);
-        out.writeString(this.body_es);
+        out.writeString(this.description);
         out.writeString(this.date);
-        out.writeString(this.created_ts);
-        out.writeString(this.updated_ts);
-        out.writeParcelable(this.photos, flags);
-
+        out.writeTypedList(this.images);
     }
 
     public static final Creator<ProjectItem> CREATOR = new Creator<ProjectItem>() {

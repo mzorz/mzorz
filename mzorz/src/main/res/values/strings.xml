@@ -54,10 +54,10 @@
     <string name="cancel_lower">Cancel</string>
     <string name="error_no_items_found">No items found for this section</string>
 
-    <string name="no_title">Sin título</string>
-    <string name="no_excerpt">Sin descripción</string>
-    <string name="no_date">Sin fecha</string>
-    <string name="no_data">Sin datos</string>
+    <string name="no_title">No title</string>
+    <string name="no_excerpt">No description</string>
+    <string name="no_date">No date</string>
+    <string name="no_data">No data</string>
     <string name="crash_toast_text">Mario: error in your app, sending error</string>
     
     

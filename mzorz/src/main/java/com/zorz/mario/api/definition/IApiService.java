@@ -6,6 +6,7 @@ package com.zorz.mario.api.definition;
  */
 
 import com.zorz.mario.model.CoverLetterResponse;
+import com.zorz.mario.model.ProjectsResponse;
 
 import retrofit.Callback;
 import retrofit.http.GET;
@@ -15,17 +16,10 @@ public interface IApiService {
     @GET("/coverletter")
     public void getCoverLetter(Callback<CoverLetterResponse> callback);
 
-    @GET("/previouswork")
-    public void getPreviousWork(Callback<CoverLetterResponse> callback);
+    @GET("/projects/android")
+    public void getAndroidProjects(Callback<ProjectsResponse> callback);
 
-//    @GET("/news")
-//    public void getNews(Callback<NewsResponse> callback);
-//
-//    @GET("/events")
-//    public void getEvents(Callback<EventsResponse> callback);
-//
-//    @GET("/artists")
-//    public void getArtists(Callback<ArtistsResponse> callback);
-//
+    @GET("/projects/other")
+    public void getOtherProjects(Callback<ProjectsResponse> callback);
 }
 

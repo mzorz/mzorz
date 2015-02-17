@@ -81,7 +81,7 @@
 		    android:orientation="vertical" >
 	            
 		    <com.viewcomponents.FontButton
-		        android:id="@+id/btn_news"
+		        android:id="@+id/btnCoverLetter"
 		        style="@style/bg_blue_button"
 		        android:layout_width="fill_parent"
 		        android:gravity="left|center_vertical"
@@ -93,7 +93,7 @@
 		    <View android:layout_width="fill_parent" android:layout_height="1dp" android:background="@color/white" android:layout_marginLeft="5dp" android:layout_marginRight="5dp" />
 		    		    
 		    <com.viewcomponents.FontButton
-		        android:id="@+id/btn_events"
+		        android:id="@+id/btnAndroidProjects"
 		        style="@style/bg_blue_button"
 		        android:layout_width="fill_parent"
 		        android:gravity="left|center_vertical"
@@ -105,7 +105,7 @@
 		    <View android:layout_width="fill_parent" android:layout_height="1dp" android:background="@color/white" android:layout_marginLeft="5dp" android:layout_marginRight="5dp" />
 		    
 		    <com.viewcomponents.FontButton
-		        android:id="@+id/btn_artists"
+		        android:id="@+id/btnOtherProjects"
 		        style="@style/bg_blue_button"
 		        android:layout_width="fill_parent"
 		        android:drawableLeft="@drawable/grupos_plano"
@@ -117,7 +117,7 @@
 		    <View android:layout_width="fill_parent" android:layout_height="1dp" android:background="@color/white" android:layout_marginLeft="5dp" android:layout_marginRight="5dp" />
 		    		    
 			<com.viewcomponents.FontButton
-		        android:id="@+id/btn_venues"
+		        android:id="@+id/btnWantToWorkOn"
 		        style="@style/bg_blue_button"
 		        android:layout_width="fill_parent"
 		        android:drawableLeft="@drawable/mn_want_96"
@@ -130,7 +130,7 @@
 
 
 			<com.viewcomponents.FontButton
-		        android:id="@+id/btn_aboutme"
+		        android:id="@+id/btnAboutMe"
 		        style="@style/bg_blue_button"
 		        android:layout_width="fill_parent"
 		        android:gravity="left|center_vertical"
@@ -143,7 +143,7 @@
 
 
             <com.viewcomponents.FontButton
-                android:id="@+id/btn_aboutapp"
+                android:id="@+id/btnAboutApp"
                 style="@style/bg_blue_button"
                 android:layout_width="fill_parent"
                 android:gravity="left|center_vertical"

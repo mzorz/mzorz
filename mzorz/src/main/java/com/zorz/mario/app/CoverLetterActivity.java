@@ -15,7 +15,6 @@ import com.zorz.mario.api.Service;
 public class CoverLetterActivity extends BaseActivity {
 	
 	private static String TAG = "Zorz";
-    private Service mService;
     private WebView myWebView;
 
 	@Override
@@ -26,8 +25,6 @@ public class CoverLetterActivity extends BaseActivity {
 		setActionBarTitle(getString(R.string.mn_cover));
 		initializeSlidingMenu();
 		
-        mService = new Service();
-
 	}
 
 	
@@ -41,7 +38,7 @@ public class CoverLetterActivity extends BaseActivity {
 		super.onStart();
 
         Application.getEventBus().register(this);
-        mService.getCoverLetter();
+        Service.getInstance().getCoverLetter();
 	}
 
     @Override

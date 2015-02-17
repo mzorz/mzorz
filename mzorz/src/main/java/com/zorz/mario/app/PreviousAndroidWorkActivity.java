@@ -6,11 +6,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.zorz.mario.Application;
 import com.zorz.mario.ConstantsMzorz;
 import com.zorz.mario.R;
 import com.zorz.mario.adapter.ProjectsListAdapter;
+import com.zorz.mario.api.Event;
 import com.zorz.mario.api.Service;
 import com.zorz.mario.model.ProjectItem;
 
@@ -19,50 +21,47 @@ import java.util.ArrayList;
 public class PreviousAndroidWorkActivity extends BaseActivity {
 	
 	private static String TAG = "Zorz";
-    private Service mService;
-	private ListView listNews;
-	private ProjectsListAdapter newsAdapter;
+	private ListView listProjs;
+	private ProjectsListAdapter projsAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		listNews = (ListView)findViewById(R.id.gallery);
+		listProjs = (ListView)findViewById(R.id.gallery);
 		setActionBarTitle(getString(R.string.mn_android));
 		initializeSlidingMenu();
 		
 		//DataBaseManager.initializeDB(this);
 		
-        mService = new Service();
+        projsAdapter = new ProjectsListAdapter(PreviousAndroidWorkActivity.this, new ArrayList<ProjectItem>());
+		listProjs.setAdapter(projsAdapter);
 
-		newsAdapter = new ProjectsListAdapter(PreviousAndroidWorkActivity.this, new ArrayList<ProjectItem>());
-		listNews.setAdapter(newsAdapter);
+		listProjs.setOnItemClickListener(new OnItemClickListener() {
 
-		listNews.setOnItemClickListener(new OnItemClickListener() {
+            /*
+             * (non-Javadoc)
+             * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView, android.view.View, int, long)
+             */
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1,
+                                    int position, long arg3) {
+                if (null != projsAdapter) {
+                    //get touched object
+                    ProjectItem newsobj = (ProjectItem) projsAdapter.getItem(position);
 
-			/*
-			 * (non-Javadoc)
-			 * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView, android.view.View, int, long)
-			 */
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1,
-				int position, long arg3) {
-				if (null != newsAdapter) {
-					//get touched object
-					ProjectItem newsobj = (ProjectItem) newsAdapter.getItem(position);
-					
                     Intent i = new Intent(getContext(), ItemDetailActivity.class);
                     i.putExtra(ConstantsMzorz.MZORZ_ITEM_TITLE, newsobj.title);
-                    i.putExtra(ConstantsMzorz.MZORZ_ITEM_DESC, newsobj.excerpt_es);
-                    i.putExtra(ConstantsMzorz.MZORZ_ITEM_ACTIONBARTITLE, getString(R.string.mn_cover));
-                    i.putExtra(ConstantsMzorz.MZORZ_ITEM_PHOTO, newsobj.photos);
+                    i.putExtra(ConstantsMzorz.MZORZ_ITEM_DESC, newsobj.description);
+                    i.putExtra(ConstantsMzorz.MZORZ_ITEM_ACTIONBARTITLE, getString(R.string.mn_android));
+                    i.putExtra(ConstantsMzorz.MZORZ_ITEM_PHOTO, newsobj);
 
-					startActivityForResult(i, 500);
-					//overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
-					overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-				}
-			}
-		});
+                    startActivityForResult(i, 500);
+                    //overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                }
+            }
+        });
 		
 		
 	}
@@ -79,7 +78,7 @@ public class PreviousAndroidWorkActivity extends BaseActivity {
 		super.onStart();
 
         Application.getEventBus().register(this);
-        mService.getPreviousWork();
+        Service.getInstance().getAndroidProjects();
 	}
 
     @Override
@@ -88,22 +87,23 @@ public class PreviousAndroidWorkActivity extends BaseActivity {
         super.onStop();
     }
 
-//    public void onEvent(Event.NewsLoadStartEvent event) {
-//        showProgressDialog(getString(R.string.server_login), false);
-//    }
-//
-//    public void onEvent(Event.NewsLoadCompleteEvent event) {
-//        dismissProgressDialog();
-//        if (event.object == null || event.object.data == null || event.object.data.size() == 0)
-//            Toast.makeText(this, R.string.error_no_items_found, Toast.LENGTH_SHORT).show();
-//        else{
-//            newsAdapter.setNewsList(event.object.data);
-//            newsAdapter.notifyDataSetChanged();
-//        }
-//    }
-//
-//    public void onEvent(Event.NewsLoadFailEvent event) {
-//        dismissProgressDialog();
-//    }
+    public void onEvent(Event.AndroidProjectsLoadStartEvent event) {
+        showProgressDialog(getString(R.string.server_login), false);
+    }
+
+    public void onEvent(Event.AndroidProjectsLoadCompleteEvent event) {
+        dismissProgressDialog();
+        if (event.object == null || event.object.projects == null || event.object.projects.size() == 0)
+            Toast.makeText(this, R.string.error_no_items_found, Toast.LENGTH_SHORT).show();
+        else{
+            projsAdapter.setProjectsList(event.object.projects);
+            projsAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public void onEvent(Event.AndroidProjectsLoadFailEvent event) {
+        dismissProgressDialog();
+        showError();
+    }
 
 }

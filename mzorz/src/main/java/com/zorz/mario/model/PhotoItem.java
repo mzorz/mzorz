@@ -3,31 +3,20 @@ package com.zorz.mario.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by mariozorz on 1/18/15.
- */
+import java.util.List;
+
 public class PhotoItem implements Parcelable {
-    public String filename;
-    public String original;
-    public String full;
-    public String big;
-    public String small;
-    public String thumb;
-    public String ext;
-    public String path;
+
+    public String title;
+    public String description;
+    public String url;
 
     public PhotoItem(){}
 
     protected PhotoItem(Parcel in) {
-        this.filename = in.readString();
-        this.original = in.readString();
-        this.full = in.readString();
-        this.big = in.readString();
-        this.small = in.readString();
-        this.thumb = in.readString();
-        this.ext = in.readString();
-        this.path = in.readString();
-
+        this.title = in.readString();
+        this.description = in.readString();
+        this.url = in.readString();
     }
 
     @Override
@@ -37,15 +26,9 @@ public class PhotoItem implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel out, int flags) {
-        out.writeString(this.filename);
-        out.writeString(this.original);
-        out.writeString(this.full);
-        out.writeString(this.big);
-        out.writeString(this.small);
-        out.writeString(this.thumb);
-        out.writeString(this.ext);
-        out.writeString(this.path);
-
+        out.writeString(this.title);
+        out.writeString(this.description);
+        out.writeString(this.url);
     }
 
     public static final Creator<PhotoItem> CREATOR = new Creator<PhotoItem>() {

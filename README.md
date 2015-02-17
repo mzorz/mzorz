@@ -1,2 +1,2 @@
 # mzorz
-self application
+example application to show my work on Android

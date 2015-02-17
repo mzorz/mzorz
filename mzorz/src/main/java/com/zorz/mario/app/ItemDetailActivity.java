@@ -54,7 +54,7 @@ public class ItemDetailActivity extends BaseActivity {
 		
         if (photos != null){
             Picasso.with(this)
-                    .load(photos.full != null ? photos.full : photos.thumb )
+                    .load(photos.url)
                     .placeholder(R.drawable.mz_logo_splash_ic)
                     .error(R.drawable.mz_logo_splash_ic)
                     .into((ImageView)findViewById(R.id.newspic));

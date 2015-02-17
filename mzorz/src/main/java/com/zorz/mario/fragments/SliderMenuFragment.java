@@ -14,6 +14,7 @@ import com.viewcomponents.FontButton;
 import com.zorz.mario.R;
 import com.zorz.mario.app.BaseActivity;
 import com.zorz.mario.app.CoverLetterActivity;
+import com.zorz.mario.app.PreviousAndroidWorkActivity;
 
 public class SliderMenuFragment extends Fragment {
 
@@ -38,8 +39,8 @@ public class SliderMenuFragment extends Fragment {
 		});
 		
 
-		FontButton btnNews = (FontButton) view.findViewById(R.id.btn_news);
-		btnNews.setOnClickListener(new OnClickListener() {
+		FontButton btnCoverLetter = (FontButton) view.findViewById(R.id.btnCoverLetter);
+        btnCoverLetter.setOnClickListener(new OnClickListener() {
  			@Override
 			public void onClick(View v) {
 
@@ -51,7 +52,20 @@ public class SliderMenuFragment extends Fragment {
  				getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 			}
 		});
-		
+
+        FontButton btnAndroidProjects = (FontButton) view.findViewById(R.id.btnAndroidProjects);
+        btnAndroidProjects.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                hideSlidingMenu();
+                finishCurrentScreen();
+                Intent i = new Intent(getActivity(), PreviousAndroidWorkActivity.class);
+                //i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                getActivity().startActivity(i);
+                getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
 
  		return view;
 	}

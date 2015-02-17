@@ -2,6 +2,7 @@ package com.zorz.mario.api;
 
 
 import com.zorz.mario.model.CoverLetterResponse;
+import com.zorz.mario.model.ProjectsResponse;
 
 /**
  * Created by mariozorz on 1/15/15.
@@ -32,6 +33,44 @@ public class Event<T> {
     }
 
 
+
+    public static class AndroidProjectsLoadStartEvent {
+
+    }
+
+    public static class AndroidProjectsLoadFailEvent extends Event<Error> {
+
+        public AndroidProjectsLoadFailEvent(Error object) {
+            super(object);
+        }
+    }
+
+    public static class AndroidProjectsLoadCompleteEvent extends Event<ProjectsResponse> {
+
+        public AndroidProjectsLoadCompleteEvent(ProjectsResponse object) {
+            super(object);
+        }
+    }
+
+
+
+    public static class OtherProjectsLoadStartEvent {
+
+    }
+
+    public static class OtherProjectsLoadFailEvent extends Event<Error> {
+
+        public OtherProjectsLoadFailEvent(Error object) {
+            super(object);
+        }
+    }
+
+    public static class OtherProjectsLoadCompleteEvent extends Event<ProjectsResponse> {
+
+        public OtherProjectsLoadCompleteEvent(ProjectsResponse object) {
+            super(object);
+        }
+    }
 
 
 }

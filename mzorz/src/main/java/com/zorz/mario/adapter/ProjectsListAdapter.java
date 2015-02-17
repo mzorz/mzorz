@@ -19,7 +19,7 @@ public class ProjectsListAdapter extends BaseAdapter {
 
 	private Context mContext;
 	private LayoutInflater inflater;
-	private List<ProjectItem> news;
+	private List<ProjectItem> items;
 
 	/**
 	 * Constructor
@@ -29,12 +29,12 @@ public class ProjectsListAdapter extends BaseAdapter {
 	public ProjectsListAdapter(Context c, List<ProjectItem> news) {
 		mContext = c;
 		inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		this.news = news;
+		this.items = news;
 		
 	}
 
-	public void setNewsList(List<ProjectItem> a_arrList){
-		this.news = a_arrList;
+	public void setProjectsList(List<ProjectItem> a_arrList){
+		this.items = a_arrList;
 	}
 	
 	/*
@@ -43,7 +43,7 @@ public class ProjectsListAdapter extends BaseAdapter {
 	 */
 	@Override
 	public int getCount() {
-		return news.size();
+		return items.size();
 	}
 
 	/*
@@ -52,7 +52,7 @@ public class ProjectsListAdapter extends BaseAdapter {
 	 */
 	@Override
 	public Object getItem(int position) {
-		return news.get(position);
+		return items.get(position);
 	}
 
 	/*
@@ -93,9 +93,9 @@ public class ProjectsListAdapter extends BaseAdapter {
         item.title = ((item.title == null) || (item.title.length() == 0)) ? mContext.getResources().getString(R.string.no_title) : item.title;
 		holder.title.setText(Html.fromHtml(item.title));
 
-		holder.description.setText(Html.fromHtml(item.excerpt_es));
+		holder.description.setText(Html.fromHtml(item.description));
 
-        String strImgUrl = item.photos != null ? item.photos.thumb : null;
+        String strImgUrl = (item.images != null && item.images.get(0) != null) ? item.images.get(0).url : null;
 
         Picasso.with(mContext)
                 .load(strImgUrl)
