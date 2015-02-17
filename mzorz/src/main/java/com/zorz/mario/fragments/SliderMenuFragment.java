@@ -15,6 +15,7 @@ import com.zorz.mario.R;
 import com.zorz.mario.app.ui.BaseActivity;
 import com.zorz.mario.app.ui.CoverLetterActivity;
 import com.zorz.mario.app.ui.PreviousAndroidWorkActivity;
+import com.zorz.mario.app.ui.PreviousOtherWorkActivity;
 
 public class SliderMenuFragment extends Fragment {
 
@@ -61,6 +62,20 @@ public class SliderMenuFragment extends Fragment {
                 hideSlidingMenu();
                 finishCurrentScreen();
                 Intent i = new Intent(getActivity(), PreviousAndroidWorkActivity.class);
+                //i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                getActivity().startActivity(i);
+                getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
+
+        FontButton btnOtherProjects = (FontButton) view.findViewById(R.id.btnOtherProjects);
+        btnOtherProjects.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                hideSlidingMenu();
+                finishCurrentScreen();
+                Intent i = new Intent(getActivity(), PreviousOtherWorkActivity.class);
                 //i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 getActivity().startActivity(i);
                 getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

@@ -11,7 +11,7 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
         android:src="@drawable/mz_logo_splash_ic"
-        android:background="@color/mzorz_bg_lighter"
-        android:scaleType="centerCrop"/>
+        android:background="@color/gray_bg"
+        android:scaleType="fitCenter"/>
 
 </RelativeLayout>

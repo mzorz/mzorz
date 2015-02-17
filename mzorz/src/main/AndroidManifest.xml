@@ -49,6 +49,12 @@
             android:windowSoftInputMode="stateHidden" />
 
         <activity
+            android:name=".app.ui.PreviousOtherWorkActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
             android:name=".app.ui.ItemDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"

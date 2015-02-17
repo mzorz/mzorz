@@ -103,6 +103,35 @@ public class Service {
     }
 
 
+    public void getOtherProjects() {
+
+        Application.getEventBus().post(new Event.OtherProjectsLoadStartEvent());
+
+        service.getOtherProjects(new Callback<ProjectsResponse>() {
+
+            @Override
+            public void success(ProjectsResponse resp, Response response) {
+                Application.getEventBus().post(new Event.OtherProjectsLoadCompleteEvent(resp));
+            }
+
+            @Override
+            public void failure(RetrofitError retrofitError) {
+                Log.i(TAG, retrofitError.getMessage());
+                if (retrofitError.getResponse() != null) {
+                    try {
+                        Error error = (Error) retrofitError.getBodyAs(Error.class);
+                        Application.getEventBus().post(new Event.OtherProjectsLoadFailEvent(error));
+                    } catch (Exception ex){
+                        ex.printStackTrace();
+                        Application.getEventBus().post(new Event.OtherProjectsLoadFailEvent(null));
+                    }
+                } else {
+                    Application.getEventBus().post(new Event.OtherProjectsLoadFailEvent(null));
+                }
+            }
+        });
+    }
+
 
     public static Service getInstance() {
         return instance;

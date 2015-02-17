@@ -53,7 +53,6 @@ public class Event<T> {
     }
 
 
-
     public static class OtherProjectsLoadStartEvent {
 
     }
@@ -71,6 +70,5 @@ public class Event<T> {
             super(object);
         }
     }
-
 
 }
