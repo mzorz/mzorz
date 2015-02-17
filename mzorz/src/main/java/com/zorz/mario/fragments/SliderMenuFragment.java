@@ -12,6 +12,8 @@ import android.widget.ImageView;
 
 import com.viewcomponents.FontButton;
 import com.zorz.mario.R;
+import com.zorz.mario.app.ui.AboutAppActivity;
+import com.zorz.mario.app.ui.AboutMeActivity;
 import com.zorz.mario.app.ui.BaseActivity;
 import com.zorz.mario.app.ui.CoverLetterActivity;
 import com.zorz.mario.app.ui.PreviousAndroidWorkActivity;
@@ -93,6 +95,31 @@ public class SliderMenuFragment extends Fragment {
             }
         });
 
+        FontButton btnAboutMe = (FontButton) view.findViewById(R.id.btnAboutMe);
+        btnAboutMe.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                hideSlidingMenu();
+                finishCurrentScreen();
+                Intent i = new Intent(getActivity(), AboutMeActivity.class);
+                getActivity().startActivity(i);
+                getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
+
+        FontButton btnAboutApp = (FontButton) view.findViewById(R.id.btnAboutApp);
+        btnAboutApp.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                hideSlidingMenu();
+                finishCurrentScreen();
+                Intent i = new Intent(getActivity(), AboutAppActivity.class);
+                getActivity().startActivity(i);
+                getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
 
  		return view;
 	}

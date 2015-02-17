@@ -1,6 +1,8 @@
 package com.zorz.mario.api;
 
 
+import com.zorz.mario.model.AboutAppResponse;
+import com.zorz.mario.model.AboutMeResponse;
 import com.zorz.mario.model.CoverLetterResponse;
 import com.zorz.mario.model.ProjectsResponse;
 import com.zorz.mario.model.WantToWorkOnResponse;
@@ -87,6 +89,44 @@ public class Event<T> {
     public static class WantToWorkLoadCompleteEvent extends Event<WantToWorkOnResponse> {
 
         public WantToWorkLoadCompleteEvent(WantToWorkOnResponse object) {
+            super(object);
+        }
+    }
+
+
+    public static class AboutMeLoadStartEvent {
+
+    }
+
+    public static class AboutMeLoadFailEvent extends Event<Error> {
+
+        public AboutMeLoadFailEvent(Error object) {
+            super(object);
+        }
+    }
+
+    public static class AboutMeLoadCompleteEvent extends Event<AboutMeResponse> {
+
+        public AboutMeLoadCompleteEvent(AboutMeResponse object) {
+            super(object);
+        }
+    }
+
+
+    public static class AboutAppLoadStartEvent {
+
+    }
+
+    public static class AboutAppLoadFailEvent extends Event<Error> {
+
+        public AboutAppLoadFailEvent(Error object) {
+            super(object);
+        }
+    }
+
+    public static class AboutAppLoadCompleteEvent extends Event<AboutAppResponse> {
+
+        public AboutAppLoadCompleteEvent(AboutAppResponse object) {
             super(object);
         }
     }

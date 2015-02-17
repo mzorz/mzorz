@@ -5,6 +5,8 @@ package com.zorz.mario.api.definition;
  * Created by mariozorz on 1/15/15.
  */
 
+import com.zorz.mario.model.AboutAppResponse;
+import com.zorz.mario.model.AboutMeResponse;
 import com.zorz.mario.model.CoverLetterResponse;
 import com.zorz.mario.model.ProjectsResponse;
 import com.zorz.mario.model.WantToWorkOnResponse;
@@ -26,5 +28,10 @@ public interface IApiService {
     @GET("/workon")
     public void getWantToWorkOn(Callback<WantToWorkOnResponse> callback);
 
+    @GET("/aboutme")
+    public void getAboutMe(Callback<AboutMeResponse> callback);
+
+    @GET("/aboutapp")
+    public void getAboutApp(Callback<AboutAppResponse> callback);
 }
 

@@ -11,6 +11,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.zorz.mario.Application;
 import com.zorz.mario.api.definition.IApiService;
+import com.zorz.mario.model.AboutAppResponse;
+import com.zorz.mario.model.AboutMeResponse;
 import com.zorz.mario.model.CoverLetterResponse;
 import com.zorz.mario.model.ProjectsResponse;
 import com.zorz.mario.model.WantToWorkOnResponse;
@@ -163,6 +165,63 @@ public class Service {
         });
     }
 
+    public void getAboutMe() {
+
+        Application.getEventBus().post(new Event.AboutMeLoadStartEvent());
+
+        service.getAboutMe(new Callback<AboutMeResponse>() {
+
+            @Override
+            public void success(AboutMeResponse resp, Response response) {
+                Application.getEventBus().post(new Event.AboutMeLoadCompleteEvent(resp));
+            }
+
+            @Override
+            public void failure(RetrofitError retrofitError) {
+                Log.i(TAG, retrofitError.getMessage());
+                if (retrofitError.getResponse() != null) {
+                    try {
+                        Error error = (Error) retrofitError.getBodyAs(Error.class);
+                        Application.getEventBus().post(new Event.AboutMeLoadFailEvent(error));
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                        Application.getEventBus().post(new Event.AboutMeLoadFailEvent(null));
+                    }
+                } else {
+                    Application.getEventBus().post(new Event.AboutMeLoadFailEvent(null));
+                }
+            }
+        });
+    }
+
+    public void getAboutApp() {
+
+        Application.getEventBus().post(new Event.AboutAppLoadStartEvent());
+
+        service.getAboutApp(new Callback<AboutAppResponse>() {
+
+            @Override
+            public void success(AboutAppResponse resp, Response response) {
+                Application.getEventBus().post(new Event.AboutAppLoadCompleteEvent(resp));
+            }
+
+            @Override
+            public void failure(RetrofitError retrofitError) {
+                Log.i(TAG, retrofitError.getMessage());
+                if (retrofitError.getResponse() != null) {
+                    try {
+                        Error error = (Error) retrofitError.getBodyAs(Error.class);
+                        Application.getEventBus().post(new Event.AboutAppLoadFailEvent(error));
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                        Application.getEventBus().post(new Event.AboutAppLoadFailEvent(null));
+                    }
+                } else {
+                    Application.getEventBus().post(new Event.AboutAppLoadFailEvent(null));
+                }
+            }
+        });
+    }
 
     public static Service getInstance() {
         return instance;
