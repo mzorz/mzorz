@@ -5,19 +5,26 @@
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
 
     -->
-    <style name="AppBaseTheme" parent="android:Theme.Light">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-
-        -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
     </style>
+    <!--<style name="AppBaseTheme" parent="android:Theme.Light">-->
+        <!--&lt;!&ndash;-->
+            <!--Theme customizations available in newer API levels can go in-->
+            <!--res/values-vXX/styles.xml, while customizations related to-->
+            <!--backward-compatibility can go here.-->
 
-    <style name="AppTheme" parent="@android:style/Theme.Light.NoTitleBar">
+        <!--&ndash;&gt;-->
+    <!--</style>-->
 
-        <!-- <style name="AppTheme" parent="@style/Holo.Theme.Light.NoActionBar"> -->
-        <!--<item name="switchStyle">@style/switch_light</item>-->
+    <!--<style name="AppTheme" parent="@android:style/Theme.Light.NoTitleBar">-->
+
+        <!--&lt;!&ndash; <style name="AppTheme" parent="@style/Holo.Theme.Light.NoActionBar"> &ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="switchStyle">@style/switch_light</item>&ndash;&gt;-->
+    <!--</style>-->
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
     </style>
 
     <style name="activityBG">

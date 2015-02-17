@@ -14,6 +14,7 @@ import com.viewcomponents.SquareImageView;
 import com.zorz.mario.ConstantsMzorz;
 import com.zorz.mario.R;
 import com.zorz.mario.model.PhotoItem;
+import com.zorz.mario.model.ProjectItem;
 
 public class ItemDetailActivity extends BaseActivity {
 	
@@ -21,7 +22,7 @@ public class ItemDetailActivity extends BaseActivity {
     private String title;
     private String description;
     private String actionbartitle;
-    private PhotoItem photos;
+    private ProjectItem projectItem;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +32,13 @@ public class ItemDetailActivity extends BaseActivity {
         title = getIntent().getStringExtra(ConstantsMzorz.MZORZ_ITEM_TITLE);
         description = getIntent().getStringExtra(ConstantsMzorz.MZORZ_ITEM_DESC);
         actionbartitle = getIntent().getStringExtra(ConstantsMzorz.MZORZ_ITEM_ACTIONBARTITLE);
-        photos = getIntent().getParcelableExtra(ConstantsMzorz.MZORZ_ITEM_PHOTO);
+        projectItem = getIntent().getParcelableExtra(ConstantsMzorz.MZORZ_ITEM_PHOTO);
 
 		setActionBarTitle(actionbartitle);
 		//initializeSlidingMenu();
 		
-		DataBaseManager.initializeDB(this);
-		
+		//DataBaseManager.initializeDB(this);
+
 		initializeButtons();
 
 	}
@@ -52,9 +53,9 @@ public class ItemDetailActivity extends BaseActivity {
 	protected void onStart() {
 		super.onStart();
 		
-        if (photos != null){
+        if (projectItem.images != null){
             Picasso.with(this)
-                    .load(photos.url)
+                    .load(projectItem.images != null ? projectItem.images.get(0).url : null)
                     .placeholder(R.drawable.mz_logo_splash_ic)
                     .error(R.drawable.mz_logo_splash_ic)
                     .into((ImageView)findViewById(R.id.newspic));
@@ -100,25 +101,5 @@ public class ItemDetailActivity extends BaseActivity {
 		}
 		
 	}
-	
-	/*@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}*/
-	
 
 }
