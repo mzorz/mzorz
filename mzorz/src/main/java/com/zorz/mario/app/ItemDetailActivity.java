@@ -19,9 +19,6 @@ import com.zorz.mario.model.ProjectItem;
 public class ItemDetailActivity extends BaseActivity {
 	
 	private static String TAG = "Zorz";
-    private String title;
-    private String description;
-    private String actionbartitle;
     private ProjectItem projectItem;
 
 	@Override
@@ -29,12 +26,9 @@ public class ItemDetailActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_item_news);
 
-        title = getIntent().getStringExtra(ConstantsMzorz.MZORZ_ITEM_TITLE);
-        description = getIntent().getStringExtra(ConstantsMzorz.MZORZ_ITEM_DESC);
-        actionbartitle = getIntent().getStringExtra(ConstantsMzorz.MZORZ_ITEM_ACTIONBARTITLE);
-        projectItem = getIntent().getParcelableExtra(ConstantsMzorz.MZORZ_ITEM_PHOTO);
+        projectItem = getIntent().getParcelableExtra(ConstantsMzorz.MZORZ_ITEM);
 
-		setActionBarTitle(actionbartitle);
+		setActionBarTitle(projectItem.title);
 		//initializeSlidingMenu();
 		
 		//DataBaseManager.initializeDB(this);
@@ -45,7 +39,6 @@ public class ItemDetailActivity extends BaseActivity {
 	
 	 @Override
 	 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		 //overridePendingTransition(R.anim.animation_leave, R.anim.animation_enter);
 		 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
 	 }	
 
@@ -72,8 +65,6 @@ public class ItemDetailActivity extends BaseActivity {
 			@Override
 			public void onClick(View v) {
 				ItemDetailActivity.this.onBackPressed();
-				//overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
-				//overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
 				overridePendingTransition(R.anim.slide_out_right, R.anim.slide_in_left);
 				
 			}
@@ -81,18 +72,18 @@ public class ItemDetailActivity extends BaseActivity {
 		addLeftViewToActionBar(menuButton);
 
 		
-		if (title != null) {
+		if (projectItem.title != null) {
             //populate title and so on
 
-            String strTmp = title;
+            String strTmp = projectItem.title;
             if (strTmp.length() == 0)
                 strTmp = getContext().getResources().getString(R.string.no_title);
             setActionBarTitle(Html.fromHtml(strTmp));
         }
 
-        if (description != null){
+        if (projectItem.description != null){
 
-            String strTmp = description;
+            String strTmp = projectItem.description;
             if (strTmp.length() == 0)
                 strTmp = getContext().getResources().getString(R.string.no_title);
 			TextView txtDesc = (TextView)findViewById(R.id.item_detail);

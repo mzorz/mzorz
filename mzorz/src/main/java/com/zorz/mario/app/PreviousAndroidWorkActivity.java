@@ -51,13 +51,9 @@ public class PreviousAndroidWorkActivity extends BaseActivity {
                     ProjectItem newsobj = (ProjectItem) projsAdapter.getItem(position);
 
                     Intent i = new Intent(getContext(), ItemDetailActivity.class);
-                    i.putExtra(ConstantsMzorz.MZORZ_ITEM_TITLE, newsobj.title);
-                    i.putExtra(ConstantsMzorz.MZORZ_ITEM_DESC, newsobj.description);
-                    i.putExtra(ConstantsMzorz.MZORZ_ITEM_ACTIONBARTITLE, getString(R.string.mn_android));
-                    i.putExtra(ConstantsMzorz.MZORZ_ITEM_PHOTO, newsobj);
+                    i.putExtra(ConstantsMzorz.MZORZ_ITEM, newsobj);
 
                     startActivityForResult(i, 500);
-                    //overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 }
             }
@@ -69,7 +65,6 @@ public class PreviousAndroidWorkActivity extends BaseActivity {
 	
 	 @Override
 	 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		 //overridePendingTransition(R.anim.animation_leave, R.anim.animation_enter);
 		 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
 	 }	
 	

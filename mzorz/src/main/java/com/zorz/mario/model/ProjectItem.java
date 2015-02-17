@@ -12,18 +12,18 @@ public class ProjectItem implements Parcelable {
     public String title;
     public String description;
     public String date;
-    public List<PhotoItem> images;
+    public ArrayList<PhotoItem> images;
 
-    public ProjectItem(){}
+    public ProjectItem(){
+        this.images = new ArrayList<PhotoItem>();
+    }
 
     protected ProjectItem(Parcel in) {
+        this();
         this.id = in.readInt();
         this.title = in.readString();
         this.description = in.readString();
         this.date = in.readString();
-        this.images = in.readArrayList(PhotoItem.class.getClassLoader());
-        if (this.images == null)
-            this.images = new ArrayList<PhotoItem>();
         in.readTypedList(this.images, PhotoItem.CREATOR);
     }
 
