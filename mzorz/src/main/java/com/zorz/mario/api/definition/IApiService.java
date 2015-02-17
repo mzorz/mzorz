@@ -7,6 +7,7 @@ package com.zorz.mario.api.definition;
 
 import com.zorz.mario.model.CoverLetterResponse;
 import com.zorz.mario.model.ProjectsResponse;
+import com.zorz.mario.model.WantToWorkOnResponse;
 
 import retrofit.Callback;
 import retrofit.http.GET;
@@ -21,5 +22,9 @@ public interface IApiService {
 
     @GET("/projects/other")
     public void getOtherProjects(Callback<ProjectsResponse> callback);
+
+    @GET("/workon")
+    public void getWantToWorkOn(Callback<WantToWorkOnResponse> callback);
+
 }
 

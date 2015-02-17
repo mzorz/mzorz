@@ -13,6 +13,7 @@ import com.zorz.mario.Application;
 import com.zorz.mario.api.definition.IApiService;
 import com.zorz.mario.model.CoverLetterResponse;
 import com.zorz.mario.model.ProjectsResponse;
+import com.zorz.mario.model.WantToWorkOnResponse;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -121,12 +122,42 @@ public class Service {
                     try {
                         Error error = (Error) retrofitError.getBodyAs(Error.class);
                         Application.getEventBus().post(new Event.OtherProjectsLoadFailEvent(error));
-                    } catch (Exception ex){
+                    } catch (Exception ex) {
                         ex.printStackTrace();
                         Application.getEventBus().post(new Event.OtherProjectsLoadFailEvent(null));
                     }
                 } else {
                     Application.getEventBus().post(new Event.OtherProjectsLoadFailEvent(null));
+                }
+            }
+        });
+    }
+
+
+    public void getThingsIWantToWorkOn() {
+
+        Application.getEventBus().post(new Event.WantToWorkLoadStartEvent());
+
+        service.getWantToWorkOn(new Callback<WantToWorkOnResponse>() {
+
+            @Override
+            public void success(WantToWorkOnResponse resp, Response response) {
+                Application.getEventBus().post(new Event.WantToWorkLoadCompleteEvent(resp));
+            }
+
+            @Override
+            public void failure(RetrofitError retrofitError) {
+                Log.i(TAG, retrofitError.getMessage());
+                if (retrofitError.getResponse() != null) {
+                    try {
+                        Error error = (Error) retrofitError.getBodyAs(Error.class);
+                        Application.getEventBus().post(new Event.WantToWorkLoadFailEvent(error));
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                        Application.getEventBus().post(new Event.WantToWorkLoadFailEvent(null));
+                    }
+                } else {
+                    Application.getEventBus().post(new Event.WantToWorkLoadFailEvent(null));
                 }
             }
         });

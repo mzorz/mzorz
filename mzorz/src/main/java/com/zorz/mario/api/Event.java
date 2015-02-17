@@ -3,6 +3,7 @@ package com.zorz.mario.api;
 
 import com.zorz.mario.model.CoverLetterResponse;
 import com.zorz.mario.model.ProjectsResponse;
+import com.zorz.mario.model.WantToWorkOnResponse;
 
 /**
  * Created by mariozorz on 1/15/15.
@@ -67,6 +68,25 @@ public class Event<T> {
     public static class OtherProjectsLoadCompleteEvent extends Event<ProjectsResponse> {
 
         public OtherProjectsLoadCompleteEvent(ProjectsResponse object) {
+            super(object);
+        }
+    }
+
+
+    public static class WantToWorkLoadStartEvent {
+
+    }
+
+    public static class WantToWorkLoadFailEvent extends Event<Error> {
+
+        public WantToWorkLoadFailEvent(Error object) {
+            super(object);
+        }
+    }
+
+    public static class WantToWorkLoadCompleteEvent extends Event<WantToWorkOnResponse> {
+
+        public WantToWorkLoadCompleteEvent(WantToWorkOnResponse object) {
             super(object);
         }
     }
