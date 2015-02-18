@@ -61,6 +61,8 @@
     <string name="no_date">No date</string>
     <string name="no_data">No data</string>
     <string name="crash_toast_text">Mario: error in your app, sending error</string>
-    
+
+    <string name="exit_app">Do you really want to exit Mario\'s app?</string>
+
     
 </resources>

@@ -207,10 +207,22 @@ public class BaseActivity extends FragmentActivity implements OnCancelListener {
 				return;
 			}
 		}
-		super.onBackPressed();
-	}
-	
+        if (isTaskRoot()){
+            AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+            alert.setIcon(R.drawable.ic_launcher);
+            alert.setMessage(getString(R.string.exit_app));
+            alert.setPositiveButton(getString(R.string.accept_lower), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+            alert.setNegativeButton(getString(R.string.cancel_lower), null);
+            alert.show();
+        } else {
+            super.onBackPressed();
+        }
 
-	
+	}
 
 }
