@@ -149,7 +149,7 @@
                 android:gravity="left|center_vertical"
                 android:drawablePadding="10dp"
                 android:textSize="18sp"
-                android:drawableLeft="@drawable/sede_plano"
+                android:drawableLeft="@drawable/mn_aboutapp"
                 android:text="@string/mn_aboutapp" />
 
             <View android:layout_width="fill_parent" android:layout_height="1dp" android:background="@color/white" android:layout_marginLeft="5dp" android:layout_marginRight="5dp" />

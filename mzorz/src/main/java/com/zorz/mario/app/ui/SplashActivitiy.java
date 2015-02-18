@@ -5,15 +5,18 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
+import com.crashlytics.android.Crashlytics;
 import com.utils.Utils;
 import com.utils.database.DataBaseManager;
 import com.zorz.mario.R;
+import io.fabric.sdk.android.Fabric;
 
 public class SplashActivitiy extends FragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
+		Fabric.with(this, new Crashlytics());
 		setContentView(R.layout.activity_splash);
 
 		new LoadingTask().execute();
@@ -28,11 +31,10 @@ public class SplashActivitiy extends FragmentActivity {
  					DataBaseManager.initializeDB(SplashActivitiy.this);
 					Utils.getPreferencesEditor(SplashActivitiy.this).putBoolean("firstStart", true).commit();
 				} else {
-					/*DataBaseManager.checkUpdatesForSpinnerTables(SplashActivitiy.this);
-					DataBaseManager.migratefromV1toV2();*/
+                    //here do whatever needed if not first time
 				}
 				
-				Thread.sleep(2000);
+				Thread.sleep(2000); //for now we just wait 2 secs
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
