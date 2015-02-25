@@ -6,5 +6,14 @@
          would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
     -->
     <dimen name="activity_horizontal_margin">64dp</dimen>
+    <dimen name="navdrawer_chosen_account_height">164dp</dimen>
+    <dimen name="navdrawer_width">304dp</dimen>
+    <dimen name="navdrawer_profile_image_size">64dp</dimen>
+
+    <dimen name="keyline_1">24dp</dimen>
+    <dimen name="keyline_1_minus_8dp">16dp</dimen>
+    <dimen name="keyline_2">80dp</dimen>
+    <dimen name="keyline_2_minus_16dp">64dp</dimen>
+    <dimen name="keyline_2_session_detail">104dp</dimen>
 
 </resources>

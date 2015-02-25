@@ -3,7 +3,7 @@
     android:padding="10dp"
     android:shape="rectangle" >
 
-    <solid android:color="@color/bg_blue_button" />
+    <solid android:color="@color/mzorz_bg_lighter" />
 
     <!-- <corners
         android:bottomLeftRadius="3dp"

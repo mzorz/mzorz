@@ -8,7 +8,10 @@ import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.os.Handler;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,32 +20,40 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.viewcomponents.FontTextView;
-import com.viewcomponents.SquareImageView;
 import com.zorz.mario.R;
 
 
-public class BaseActivity extends FragmentActivity implements OnCancelListener {
+public class BaseActivity extends ActionBarActivity implements OnCancelListener {
 
+    private Toolbar toolbar;
 	protected InputMethodManager imm;
 	protected Resources mResources;
-	public SlidingMenu slidingMenu;
-	protected int CENTER = 0;
-	protected int LEFT = 1;
-	protected int RIGHT = 2;
 
     private ProgressDialog progressDialog;
+    private Handler mHandler;
 
+
+    // delay to launch nav drawer item, to allow close animation to play
+    private static final int NAVDRAWER_LAUNCH_DELAY = 250;
 
     @Override
 	protected void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
-		super.setContentView(R.layout.base_layout);
+		super.setContentView(R.layout.base_layoutv21);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
 		imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 		mResources = getResources();
 
         progressDialog = new ProgressDialog(this);
+
+        mHandler = new Handler();
 
 	}
 
@@ -66,6 +77,7 @@ public class BaseActivity extends FragmentActivity implements OnCancelListener {
 		((FrameLayout) findViewById(R.id.container_base)).addView(content);
 	}
 
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
@@ -76,7 +88,7 @@ public class BaseActivity extends FragmentActivity implements OnCancelListener {
 		return super.onPrepareOptionsMenu(menu);
 	}
 
-	protected FragmentActivity getContext() {
+	protected ActionBarActivity getContext() {
 		return BaseActivity.this;
 	}
 
@@ -84,29 +96,9 @@ public class BaseActivity extends FragmentActivity implements OnCancelListener {
 		onCancel(dialog);
 	}
 
-	protected void initializeSlidingMenu() {
-		slidingMenu = new SlidingMenu(this);
-		slidingMenu.setMode(SlidingMenu.LEFT);
-		//slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-		slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
-		slidingMenu.setShadowWidthRes(R.dimen.shadow_width);
-		slidingMenu.setShadowDrawable(R.drawable.shadow);
-		slidingMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
-		slidingMenu.setFadeDegree(0.35f);
-		slidingMenu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
-		slidingMenu.setMenu(R.layout.menu_configurations);
-
-		SquareImageView menuButton = new SquareImageView(getContext());
-		menuButton.setBackgroundResource(R.drawable.menu);
-		//menuButton.setId(R.integer.id_menuButton);
-		menuButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				slidingMenu.toggle();
-			}
-		});
-		addLeftViewToActionBar(menuButton);
-	}
+    protected void setActionBarIcon(int iconRes) {
+        toolbar.setNavigationIcon(iconRes);
+    }
 
 	@Override
 	public void startActivity(Intent intent) {
@@ -127,9 +119,10 @@ public class BaseActivity extends FragmentActivity implements OnCancelListener {
 	}
 
 	protected void setActionBarTitle(CharSequence title) {
-		FontTextView actionbarTitle = (FontTextView) findViewById(R.id.tv_title);
-		actionbarTitle.setText(title);
-		actionbarTitle.setVisibility(View.VISIBLE);
+//		FontTextView actionbarTitle = (FontTextView) findViewById(R.id.tv_title);
+//		actionbarTitle.setText(title);
+//		actionbarTitle.setVisibility(View.VISIBLE);
+        toolbar.setTitle(title);
 	}
 
 	protected void addRightViewToActionBar(View view) {
@@ -191,22 +184,13 @@ public class BaseActivity extends FragmentActivity implements OnCancelListener {
 		alert.setPositiveButton(getString(R.string.accept_lower), new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				//finish();
-				//dismiss();
 			}
 		});
-		//alert.setNegativeButton(getString(R.string.cancel_lower), null);
 		alert.show();
 	}
 	
 	@Override
 	public void onBackPressed() {
-		if (slidingMenu != null){
-			if (slidingMenu.isMenuShowing()) {
-				slidingMenu.toggle();
-				return;
-			}
-		}
         if (isTaskRoot()){
             AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
             alert.setIcon(R.drawable.ic_launcher);
@@ -224,5 +208,52 @@ public class BaseActivity extends FragmentActivity implements OnCancelListener {
         }
 
 	}
+
+
+    private void goToNavDrawerItem(int itemId){
+
+        Class<?> activityToGo;
+
+        switch(itemId)
+        {
+            case R.id.btnCoverLetter:
+                activityToGo = CoverLetterActivity.class;
+            break;
+            case R.id.btnAndroidProjects:
+                activityToGo = PreviousAndroidWorkActivity.class;
+                break;
+            case R.id.btnOtherProjects:
+                activityToGo = PreviousOtherWorkActivity.class;
+                break;
+            case R.id.btnAboutApp:
+                activityToGo = AboutAppActivity.class;
+                break;
+            case R.id.btnAboutMe:
+                activityToGo = AboutMeActivity.class;
+                break;
+            case R.id.btnWantToWorkOn:
+                activityToGo = WantToWorkOnActivity.class;
+                break;
+
+            default:
+                activityToGo = CoverLetterActivity.class; //default CoverLetter
+                break;
+        }
+
+        Intent i = new Intent(this, activityToGo);
+        startActivity(i);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        finish();
+    }
+
+    public void goToAppSection(final int itemId){
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                goToNavDrawerItem(itemId);
+            }
+        }, NAVDRAWER_LAUNCH_DELAY);
+
+    }
 
 }

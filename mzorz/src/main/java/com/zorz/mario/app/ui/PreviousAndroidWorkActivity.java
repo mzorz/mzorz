@@ -30,8 +30,6 @@ public class PreviousAndroidWorkActivity extends BaseActivity {
 		setContentView(R.layout.activity_main);
 		listProjs = (ListView)findViewById(R.id.gallery);
 		setActionBarTitle(getString(R.string.mn_android));
-		initializeSlidingMenu();
-		
 		//DataBaseManager.initializeDB(this);
 		
         projsAdapter = new ProjectsListAdapter(PreviousAndroidWorkActivity.this, new ArrayList<ProjectItem>());

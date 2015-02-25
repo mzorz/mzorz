@@ -30,7 +30,6 @@ public class FontRadioButton extends RadioButton {
 
 	protected void init() {
 		try {
-			//Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "Lato-Regular.ttf");
 			Typeface tf = FontAssetManager.get().createAsset("Roboto-Regular.ttf", getContext());
 			setTypeface(tf);
  		} catch (Exception e) {

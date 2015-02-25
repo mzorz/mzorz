@@ -21,8 +21,6 @@ public class AboutMeActivity extends BaseActivity {
 		setContentView(R.layout.activity_cover_letter);
         myWebView = (WebView) findViewById(R.id.webview);
 		setActionBarTitle(getString(R.string.mn_aboutme));
-		initializeSlidingMenu();
-		
 	}
 
 	

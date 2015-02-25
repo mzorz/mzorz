@@ -38,7 +38,7 @@
 			android:layout_height="wrap_content"
 			android:text="un item"
 			android:textStyle="bold"
-			android:textColor="@color/mzorz_bg_dark"
+			android:textColor="@color/mzorz_bg"
 			android:textSize="18sp"/>
 	
 		<TextView

@@ -35,36 +35,31 @@ public class FontTextView extends TextView {
 			Typeface tfactual = this.getTypeface();
 			if (tfactual != null){
 				if (tfactual.isBold()){
-					//Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "MyriadPro-BoldCond.otf");
-					Typeface tf = FontAssetManager.get().createAsset("HelveticaNeueLTStd-Bd.otf", getContext());
+					Typeface tf = FontAssetManager.get().createAsset("Roboto-Bold.ttf", getContext());
 					setTypeface(tf);
 				} else {
-					//Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "MyriadPro-Regular.otf");
 					Typeface tf = FontAssetManager.get().createAsset("Roboto-Regular.ttf", getContext());
 					setTypeface(tf);
 				}
 			} else {
- 				//Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "MyriadPro-Regular.otf");
 				Typeface tf = FontAssetManager.get().createAsset("Roboto-Regular.ttf", getContext());
  				setTypeface(tf);
 			}
  		} catch (Exception e) {
  			e.printStackTrace();
- 			Log.e("FontTextView.init()", "Font no disponible");
+ 			Log.e("FontTextView.init()", "Font not available");
  			
  			//at least, try to generate the regular typeface
  			try
  			{
- 				//Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "MyriadPro-Regular.otf");
 				Typeface tf = FontAssetManager.get().createAsset("Roboto-Regular.ttf", getContext());
  				setTypeface(tf);
  			} catch (Exception ex) {
 	 			ex.printStackTrace();
-	 			Log.e("FontTextView.init()", "Font no disponible");
+	 			Log.e("FontTextView.init()", "Font not available");
  			}
  			
 		}
-//		setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
 
  	}
 }

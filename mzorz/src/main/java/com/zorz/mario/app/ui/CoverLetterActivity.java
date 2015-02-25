@@ -2,6 +2,10 @@ package com.zorz.mario.app.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.webkit.WebView;
 import android.widget.Toast;
 
@@ -14,16 +18,38 @@ public class CoverLetterActivity extends BaseActivity {
 	
 	private static String TAG = "Zorz";
     private WebView myWebView;
+    private DrawerLayout drawer;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_cover_letter);
+        setActionBarIcon(R.drawable.ic_ab_drawer);
         myWebView = (WebView) findViewById(R.id.webview);
-		setActionBarTitle(getString(R.string.mn_cover));
-		initializeSlidingMenu();
-		
+		//setActionBarTitle(getString(R.string.mn_cover));
+		//initializeSlidingMenu();
+
+        drawer = (DrawerLayout) findViewById(R.id.drawer);
+        drawer.setDrawerShadow(R.drawable.drawer_shadow, Gravity.START);
+
 	}
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                drawer.openDrawer(Gravity.START);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
 	
 	 @Override
@@ -54,7 +80,8 @@ public class CoverLetterActivity extends BaseActivity {
         if (event.object == null || event.object.data == null)
             Toast.makeText(this, R.string.error_no_items_found, Toast.LENGTH_SHORT).show();
         else{
-            myWebView.loadData(event.object.data,"text/html","utf-8");
+            //myWebView.loadData(event.object.data,"text/html","utf-8");
+            myWebView.loadDataWithBaseURL("file:///asset/", event.object.data,"text/html","utf-8", null);
         }
     }
 
