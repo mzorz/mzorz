@@ -32,7 +32,9 @@ public class PreviousAndroidWorkActivity extends BaseActivity {
 		setActionBarTitle(getString(R.string.mn_android));
         setActionBarIcon(R.drawable.ic_ab_drawer);
 		//DataBaseManager.initializeDB(this);
-		
+        setDrawerSelectedOption(R.id.btnAndroidProjects);
+
+
         projsAdapter = new ProjectsListAdapter(PreviousAndroidWorkActivity.this, new ArrayList<ProjectItem>());
 		listProjs.setAdapter(projsAdapter);
 

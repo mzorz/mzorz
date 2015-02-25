@@ -32,7 +32,8 @@ public class PreviousOtherWorkActivity extends BaseActivity {
 		setActionBarTitle(getString(R.string.mn_other));
         setActionBarIcon(R.drawable.ic_ab_drawer);
 		//DataBaseManager.initializeDB(this);
-		
+        setDrawerSelectedOption(R.id.btnOtherProjects);
+
         projsAdapter = new ProjectsListAdapter(PreviousOtherWorkActivity.this, new ArrayList<ProjectItem>());
 		listProjs.setAdapter(projsAdapter);
 

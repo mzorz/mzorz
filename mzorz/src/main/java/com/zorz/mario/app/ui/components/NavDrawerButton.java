@@ -6,8 +6,10 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.viewcomponents.FontTextView;
 import com.zorz.mario.R;
@@ -49,5 +51,23 @@ public class NavDrawerButton extends LinearLayout {
         a.recycle();
 
     }
+
+    public void formatNavDrawerItem(boolean selected) {
+
+        if (selected) {
+            background.setBackgroundResource(R.drawable.selected_navdrawer_item_background);
+        } else{
+            background.setBackgroundResource(0);
+        }
+
+        // configure its appearance according to whether or not it's selected
+        text.setTextColor(selected ?
+                getResources().getColor(R.color.navdrawer_text_color_selected) :
+                getResources().getColor(R.color.navdrawer_text_color));
+        icon.setColorFilter(selected ?
+                getResources().getColor(R.color.navdrawer_icon_tint_selected) :
+                getResources().getColor(R.color.navdrawer_icon_tint));
+    }
+
 
 }

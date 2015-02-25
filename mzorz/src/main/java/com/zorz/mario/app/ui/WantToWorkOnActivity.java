@@ -22,6 +22,7 @@ public class WantToWorkOnActivity extends BaseActivity {
         myWebView = (WebView) findViewById(R.id.webview);
 		setActionBarTitle(getString(R.string.mn_want));
         setActionBarIcon(R.drawable.ic_ab_drawer);
+        setDrawerSelectedOption(R.id.btnWantToWorkOn);
 	}
 
 

@@ -28,6 +28,8 @@ public class CoverLetterActivity extends BaseActivity {
 		//setActionBarTitle(getString(R.string.mn_cover));
 		//initializeSlidingMenu();
 
+        setDrawerSelectedOption(R.id.btnCoverLetter);
+
 	}
 
 	 @Override

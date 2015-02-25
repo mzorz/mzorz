@@ -22,6 +22,7 @@ public class AboutMeActivity extends BaseActivity {
         myWebView = (WebView) findViewById(R.id.webview);
 		setActionBarTitle(getString(R.string.mn_aboutme));
         setActionBarIcon(R.drawable.ic_ab_drawer);
+        setDrawerSelectedOption(R.id.btnAboutMe);
 	}
 
 	

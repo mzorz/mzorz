@@ -22,6 +22,7 @@ public class AboutAppActivity extends BaseActivity {
         myWebView = (WebView) findViewById(R.id.webview);
 		setActionBarTitle(getString(R.string.mn_aboutapp));
         setActionBarIcon(R.drawable.ic_ab_drawer);
+        setDrawerSelectedOption(R.id.btnAboutApp);
 	}
 
 	

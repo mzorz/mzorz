@@ -22,6 +22,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.zorz.mario.R;
+import com.zorz.mario.app.ui.components.NavDrawerButton;
+
+import java.util.ArrayList;
 
 
 public class BaseActivity extends ActionBarActivity implements OnCancelListener {
@@ -34,6 +37,8 @@ public class BaseActivity extends ActionBarActivity implements OnCancelListener 
     private Handler mHandler;
 
     private DrawerLayout drawer;
+
+    private NavDrawerButton[] arrNav;
 
     // delay to launch nav drawer item, to allow close animation to play
     private static final int NAVDRAWER_LAUNCH_DELAY = 250;
@@ -58,6 +63,18 @@ public class BaseActivity extends ActionBarActivity implements OnCancelListener 
 
         drawer = (DrawerLayout) findViewById(R.id.drawer);
         drawer.setDrawerShadow(R.drawable.drawer_shadow, Gravity.START);
+
+
+        //initial setup for having references to each drawer option
+        LinearLayout ll = (LinearLayout) drawer.findViewById(R.id.navdrawer_items_list);
+        if (ll != null){
+            int childcount = ll.getChildCount();
+            arrNav = new NavDrawerButton[childcount];
+            for (int i=0; i < childcount; i++){
+                NavDrawerButton btn = (NavDrawerButton) ll.getChildAt(i);
+                arrNav[i] = btn;
+            }
+        }
 
     }
 
@@ -270,6 +287,7 @@ public class BaseActivity extends ActionBarActivity implements OnCancelListener 
     }
 
     public void goToAppSection(final int itemId){
+        setDrawerSelectedOption(itemId);
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -277,6 +295,33 @@ public class BaseActivity extends ActionBarActivity implements OnCancelListener 
             }
         }, NAVDRAWER_LAUNCH_DELAY);
 
+    }
+
+    public void setDrawerSelectedOption(int itemId){
+
+//        LinearLayout ll = (LinearLayout) drawer.findViewById(R.id.navdrawer_items_list);
+//        if (ll != null){
+//            int childcount = ll.getChildCount();
+//            for (int i=0; i < childcount; i++){
+//                NavDrawerButton btn = (NavDrawerButton) ll.getChildAt(i);
+//                if (btn.getId() == itemId)
+//                    btn.formatNavDrawerItem(true);
+//                else
+//                    btn.formatNavDrawerItem(false);
+//            }
+//        }
+
+        for (int i=0; i < arrNav.length; i++){
+            NavDrawerButton btn = arrNav[i];
+            if (btn.getId() == itemId)
+                btn.formatNavDrawerItem(true);
+            else
+                btn.formatNavDrawerItem(false);
+        }
+
+//        //first deselect the rest
+//        NavDrawerButton btnCoverLetter = (NavDrawerButton) drawer.findViewById(itemId);
+//        btnCoverLetter.formatNavDrawerItem(true);
     }
 
 }
