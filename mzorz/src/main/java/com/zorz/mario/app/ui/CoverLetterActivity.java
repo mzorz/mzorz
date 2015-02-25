@@ -18,7 +18,6 @@ public class CoverLetterActivity extends BaseActivity {
 	
 	private static String TAG = "Zorz";
     private WebView myWebView;
-    private DrawerLayout drawer;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,29 +28,8 @@ public class CoverLetterActivity extends BaseActivity {
 		//setActionBarTitle(getString(R.string.mn_cover));
 		//initializeSlidingMenu();
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer);
-        drawer.setDrawerShadow(R.drawable.drawer_shadow, Gravity.START);
-
 	}
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                drawer.openDrawer(Gravity.START);
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-	
 	 @Override
 	 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);

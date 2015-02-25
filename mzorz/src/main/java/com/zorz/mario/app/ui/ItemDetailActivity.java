@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,19 +61,26 @@ public class ItemDetailActivity extends BaseActivity {
 
 	private void initializeButtons(){
 
-		SquareImageView menuButton = new SquareImageView(getContext());
-		menuButton.setBackgroundResource(R.drawable.ic_atras);
-		menuButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				ItemDetailActivity.this.onBackPressed();
-				overridePendingTransition(R.anim.slide_out_right, R.anim.slide_in_left);
-				
-			}
-		});
-		addLeftViewToActionBar(menuButton);
+//		SquareImageView menuButton = new SquareImageView(getContext());
+//		menuButton.setBackgroundResource(R.drawable.ic_atras);
+//		menuButton.setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				ItemDetailActivity.this.onBackPressed();
+//				overridePendingTransition(R.anim.slide_out_right, R.anim.slide_in_left);
+//
+//			}
+//		});
+//		addLeftViewToActionBar(menuButton);
+//
+        toolbar.setNavigationIcon(R.drawable.ic_up);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
-		
 		if (projectItem.title != null) {
             //populate title and so on
 

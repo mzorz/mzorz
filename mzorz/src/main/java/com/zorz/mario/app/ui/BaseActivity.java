@@ -12,27 +12,28 @@ import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import com.viewcomponents.FontTextView;
 import com.zorz.mario.R;
 
 
 public class BaseActivity extends ActionBarActivity implements OnCancelListener {
 
-    private Toolbar toolbar;
+    protected Toolbar toolbar;
 	protected InputMethodManager imm;
 	protected Resources mResources;
 
     private ProgressDialog progressDialog;
     private Handler mHandler;
 
+    private DrawerLayout drawer;
 
     // delay to launch nav drawer item, to allow close animation to play
     private static final int NAVDRAWER_LAUNCH_DELAY = 250;
@@ -55,7 +56,10 @@ public class BaseActivity extends ActionBarActivity implements OnCancelListener 
 
         mHandler = new Handler();
 
-	}
+        drawer = (DrawerLayout) findViewById(R.id.drawer);
+        drawer.setDrawerShadow(R.drawable.drawer_shadow, Gravity.START);
+
+    }
 
 	//FLURRY STUFF
 	@Override
@@ -88,7 +92,26 @@ public class BaseActivity extends ActionBarActivity implements OnCancelListener 
 		return super.onPrepareOptionsMenu(menu);
 	}
 
-	protected ActionBarActivity getContext() {
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                drawer.openDrawer(Gravity.START);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    protected ActionBarActivity getContext() {
 		return BaseActivity.this;
 	}
 

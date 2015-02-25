@@ -30,6 +30,7 @@ public class PreviousOtherWorkActivity extends BaseActivity {
 		setContentView(R.layout.activity_main);
 		listProjs = (ListView)findViewById(R.id.gallery);
 		setActionBarTitle(getString(R.string.mn_other));
+        setActionBarIcon(R.drawable.ic_ab_drawer);
 		//DataBaseManager.initializeDB(this);
 		
         projsAdapter = new ProjectsListAdapter(PreviousOtherWorkActivity.this, new ArrayList<ProjectItem>());

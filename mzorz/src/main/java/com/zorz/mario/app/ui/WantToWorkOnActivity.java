@@ -21,9 +21,10 @@ public class WantToWorkOnActivity extends BaseActivity {
 		setContentView(R.layout.activity_cover_letter);
         myWebView = (WebView) findViewById(R.id.webview);
 		setActionBarTitle(getString(R.string.mn_want));
+        setActionBarIcon(R.drawable.ic_ab_drawer);
 	}
 
-	
+
 	 @Override
 	 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
