@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.squareup.picasso.Picasso;
 import com.viewcomponents.FontButton;
 import com.zorz.mario.R;
 import com.zorz.mario.app.ui.AboutAppActivity;
@@ -20,6 +21,7 @@ import com.zorz.mario.app.ui.CoverLetterActivity;
 import com.zorz.mario.app.ui.PreviousAndroidWorkActivity;
 import com.zorz.mario.app.ui.PreviousOtherWorkActivity;
 import com.zorz.mario.app.ui.WantToWorkOnActivity;
+import com.zorz.mario.app.ui.components.CircleTransformation;
 import com.zorz.mario.app.ui.components.NavDrawerButton;
 
 public class NavDrawerFragment extends Fragment {
@@ -34,6 +36,23 @@ public class NavDrawerFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		final View view = inflater.inflate(R.layout.navdrawer, container, false);
+
+        try {
+            ImageView iv = (ImageView) view.findViewById(R.id.profile_image);
+            Picasso.with(getActivity())
+                    .load(R.drawable.cvmz_pic)
+                    .transform(new CircleTransformation(
+                            60, //radius
+                            2, //margin
+                            0,//border
+                            1)) //border stroke
+                    .placeholder(R.drawable.cvmz_pic)
+                    .error(R.drawable.cvmz_pic)
+                    .into(iv);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+
 
         final NavDrawerButton btnCoverLetter = (NavDrawerButton) view.findViewById(R.id.btnCoverLetter);
         btnCoverLetter.setOnClickListener(new OnClickListener() {

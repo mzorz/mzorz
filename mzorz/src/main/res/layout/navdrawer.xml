@@ -49,39 +49,13 @@
                 android:paddingTop="@dimen/keyline_1"
                 android:id="@+id/chosen_account_content_view">
 
-                <com.viewcomponents.RoundedImageView
+                <ImageView
                     android:id="@+id/profile_image"
                     android:layout_width="@dimen/navdrawer_profile_image_size"
                     android:layout_height="@dimen/navdrawer_profile_image_size"
                     android:src="@drawable/cvmz_pic"
                     android:scaleType="centerCrop"
-                     />
-
-                <!--<ImageView-->
-                    <!--android:id="@+id/expand_account_box_indicator"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:visibility="gone"-->
-                    <!--android:layout_marginLeft="16dp"-->
-                    <!--android:paddingBottom="16dp"-->
-                    <!--android:layout_alignParentEnd="true"-->
-                    <!--android:layout_alignParentBottom="true"-->
-                    <!--android:scaleType="center"-->
-                    <!--android:src="@drawable/ic_drawer_accounts_expand" />-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/profile_email_text"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_alignLeft="@id/profile_image"-->
-                    <!--android:layout_toLeftOf="@id/expand_account_box_indicator"-->
-                    <!--android:layout_alignParentBottom="true"-->
-                    <!--android:paddingBottom="16dp"-->
-                    <!--android:textSize="@dimen/text_size_medium"-->
-                    <!--android:textColor="@color/body_text_2_inverse"-->
-                    <!--android:maxLines="1"-->
-                    <!--android:singleLine="true"-->
-                    <!--android:ellipsize="end" />-->
+                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
