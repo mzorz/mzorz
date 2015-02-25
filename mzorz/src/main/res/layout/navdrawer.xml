@@ -53,7 +53,7 @@
                     android:id="@+id/profile_image"
                     android:layout_width="@dimen/navdrawer_profile_image_size"
                     android:layout_height="@dimen/navdrawer_profile_image_size"
-                    android:src="@drawable/placeholder_square_mariol"
+                    android:src="@drawable/cvmz_pic"
                     android:scaleType="centerCrop"
                      />
 
@@ -83,17 +83,35 @@
                     <!--android:singleLine="true"-->
                     <!--android:ellipsize="end" />-->
 
-                <TextView
-                    android:id="@+id/profile_name_text"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_alignLeft="@id/profile_image"
-                    android:textSize="18sp"
-                    android:textColor="@color/white"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:ellipsize="end" />
+                    android:paddingBottom="16dp"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:id="@+id/profile_name_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        android:maxLines="1"
+                        android:text="Mario Zorz"
+                        android:singleLine="true"
+                        android:ellipsize="end" />
+                    <TextView
+                        android:id="@+id/profile_position_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="@color/white"
+                        android:maxLines="1"
+                        android:text="Android Developer"
+                        android:singleLine="true"
+                        android:ellipsize="end" />
+                </LinearLayout>
 
             </RelativeLayout>
 

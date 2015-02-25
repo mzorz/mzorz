@@ -25,7 +25,6 @@
         <activity
             android:name=".app.ui.CoverLetterActivity"
             android:label="@string/app_name" 
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden">
                         
@@ -38,61 +37,39 @@
         
         <activity
             android:name=".app.ui.PreviousAndroidWorkActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
 
         <activity
             android:name=".app.ui.PreviousOtherWorkActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
 
         <activity
             android:name=".app.ui.ItemDetailActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
 
         <activity
             android:name=".app.ui.ImageActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
 
         <activity
             android:name=".app.ui.WantToWorkOnActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
 
         <activity
             android:name=".app.ui.AboutMeActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
 
         <activity
             android:name=".app.ui.AboutAppActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
 
-        <!--<uses-library android:name="com.google.android.maps" />-->
-		
-		<!--  RELEASE MAP KEY -->
-		<!--<meta-data-->
-		    <!--android:name="com.google.android.maps.v2.API_KEY"-->
-		    <!--android:value="AIzaSyAYj3rkB8e3VZ_j9EgUsjrtYdEq1vJdODA"/>-->
-		
-		<!-- DEBUG MAP KEY -->
-<!-- 		<meta-data -->
-<!-- 		    android:name="com.google.android.maps.v2.API_KEY" -->
-<!-- 		    android:value="AIzaSyD51cHq0pd1sm_29vVYVDNUJEFyHLAgCSw"/> -->
-		
-		<!--<meta-data android:name="com.google.android.gms.version"-->
-		        <!--android:value="@integer/google_play_services_version" />-->
-						        
         <meta-data
             android:name="com.crashlytics.ApiKey"
             android:value="4395d90c8d3c4a6192f40618c4659f4dd4c8bf1a" />
