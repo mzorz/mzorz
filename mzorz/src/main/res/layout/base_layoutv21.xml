@@ -54,13 +54,13 @@
         android:background="@color/bg_blue_button">
 
         <!--<fragment-->
-            <!--android:name="com.zorz.mario.fragments.SliderMenuFragment"-->
+            <!--android:name="com.zorz.mario.app.ui.fragments.SliderMenuFragment"-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="match_parent"-->
             <!--tools:layout="@layout/fragment_menu_configurations" />-->
 
         <fragment
-            android:name="com.zorz.mario.fragments.NavDrawerFragment"
+            android:name="com.zorz.mario.app.ui.fragments.NavDrawerFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:layout="@layout/navdrawer" />

@@ -1,7 +1,5 @@
-package com.zorz.mario.fragments;
+package com.zorz.mario.app.ui.fragments;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,18 +7,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.squareup.picasso.Picasso;
-import com.viewcomponents.FontButton;
 import com.zorz.mario.R;
-import com.zorz.mario.app.ui.AboutAppActivity;
-import com.zorz.mario.app.ui.AboutMeActivity;
 import com.zorz.mario.app.ui.BaseActivity;
-import com.zorz.mario.app.ui.CoverLetterActivity;
-import com.zorz.mario.app.ui.PreviousAndroidWorkActivity;
-import com.zorz.mario.app.ui.PreviousOtherWorkActivity;
-import com.zorz.mario.app.ui.WantToWorkOnActivity;
 import com.zorz.mario.app.ui.components.CircleTransformation;
 import com.zorz.mario.app.ui.components.NavDrawerButton;
 

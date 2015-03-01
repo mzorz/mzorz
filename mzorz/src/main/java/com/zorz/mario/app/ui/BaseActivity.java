@@ -159,9 +159,6 @@ public class BaseActivity extends ActionBarActivity implements OnCancelListener 
 	}
 
 	protected void setActionBarTitle(CharSequence title) {
-//		FontTextView actionbarTitle = (FontTextView) findViewById(R.id.tv_title);
-//		actionbarTitle.setText(title);
-//		actionbarTitle.setVisibility(View.VISIBLE);
         //toolbar.setTitle(title);
         getSupportActionBar().setTitle(title);
 	}

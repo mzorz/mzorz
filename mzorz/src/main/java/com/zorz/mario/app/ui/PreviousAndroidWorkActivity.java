@@ -11,10 +11,11 @@ import android.widget.Toast;
 import com.zorz.mario.Application;
 import com.zorz.mario.ConstantsMzorz;
 import com.zorz.mario.R;
-import com.zorz.mario.adapter.ProjectsListAdapter;
+import com.zorz.mario.app.ui.adapter.ProjectsListAdapter;
 import com.zorz.mario.api.Event;
 import com.zorz.mario.api.Service;
 import com.zorz.mario.model.ProjectItem;
+import com.zorz.mario.model.favorites.FavoriteHandler;
 
 import java.util.ArrayList;
 
@@ -92,6 +93,7 @@ public class PreviousAndroidWorkActivity extends BaseActivity {
         if (event.object == null || event.object.projects == null || event.object.projects.size() == 0)
             Toast.makeText(this, R.string.error_no_items_found, Toast.LENGTH_SHORT).show();
         else{
+            FavoriteHandler.updateServerListWithLocalFavlistInfo(this, event.object);
             projsAdapter.setProjectsList(event.object.projects);
             projsAdapter.notifyDataSetChanged();
         }

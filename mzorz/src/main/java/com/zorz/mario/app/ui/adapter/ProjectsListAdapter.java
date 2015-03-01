@@ -1,4 +1,4 @@
-package com.zorz.mario.adapter;
+package com.zorz.mario.app.ui.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -14,6 +14,7 @@ import com.squareup.picasso.Picasso;
 import com.zorz.mario.R;
 import com.zorz.mario.app.ui.components.CircleTransformation;
 import com.zorz.mario.model.ProjectItem;
+import com.zorz.mario.model.favorites.FavoriteHandler;
 
 import java.util.List;
 
@@ -123,6 +124,11 @@ public class ProjectsListAdapter extends BaseAdapter {
                 item.favorite = !item.favorite;
                 //reflect favorite stats
                 updateStarIcon(item, (ImageView)v);
+
+                if (item.favorite)
+                    FavoriteHandler.addFavorite(mContext, item);
+                else
+                    FavoriteHandler.removeFavorite(mContext, item);
             }
         });
 
