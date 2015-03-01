@@ -12,8 +12,12 @@ public class ProjectItem implements Parcelable {
     public String title;
     public String brief;
     public String description;
+    public String icon;
+    public String downloads;
     public String date;
+    public int dl_priority;
     public ArrayList<PhotoItem> images;
+    public boolean favorite;
 
     public ProjectItem(){
         this.images = new ArrayList<PhotoItem>();
@@ -25,7 +29,11 @@ public class ProjectItem implements Parcelable {
         this.title = in.readString();
         this.brief = in.readString();
         this.description = in.readString();
+        this.icon = in.readString();
+        this.downloads = in.readString();
         this.date = in.readString();
+        this.dl_priority = in.readInt();
+        this.favorite = in.readByte() != 0;
         in.readTypedList(this.images, PhotoItem.CREATOR);
     }
 
@@ -40,7 +48,11 @@ public class ProjectItem implements Parcelable {
         out.writeString(this.title);
         out.writeString(this.brief);
         out.writeString(this.description);
+        out.writeString(this.icon);
+        out.writeString(this.downloads);
         out.writeString(this.date);
+        out.writeInt(this.dl_priority);
+        out.writeByte((byte) (this.favorite ? 1 : 0));
         out.writeTypedList(this.images);
     }
 

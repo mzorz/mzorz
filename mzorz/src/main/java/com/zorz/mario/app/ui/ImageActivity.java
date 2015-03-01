@@ -49,19 +49,6 @@ public class ImageActivity extends BaseActivity {
 
 	private void initializeButtons(){
 
-//		SquareImageView menuButton = new SquareImageView(getContext());
-//		menuButton.setBackgroundResource(R.drawable.ic_atras);
-//		menuButton.setOnClickListener(new OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				ImageActivity.this.onBackPressed();
-//				overridePendingTransition(R.anim.slide_out_right, R.anim.slide_in_left);
-//
-//			}
-//		});
-//		addLeftViewToActionBar(menuButton);
-
-
         toolbar.setNavigationIcon(R.drawable.ic_up);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,15 +57,12 @@ public class ImageActivity extends BaseActivity {
             }
         });
 
-//        setActionBarBackgroundColor(getResources().getColor(R.color.black_transparent));
-
 		if (projectItem.title != null) {
             //populate title and so on
 
             String strTmp = projectItem.title;
             if (strTmp.length() == 0)
                 strTmp = getContext().getResources().getString(R.string.no_title);
-            //setActionBarTitle(Html.fromHtml(strTmp));
 
             setActionBarTitle(Html.fromHtml(strTmp + getString(R.string.app_images)));
 

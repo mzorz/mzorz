@@ -30,6 +30,7 @@
     <color name="material_indigo_500">#3F51B5</color>
     <color name="material_indigo_700">#303F9F</color>
     <color name="material_pink_a200">#FF4081</color>
+    <color name="material_yellow_800">#F9A825</color>
 
     <!-- components -->
     <color name="windowBackgroundColor">#333333</color>
@@ -37,7 +38,7 @@
 
     <color name="navdrawer_background">#ffffffff</color>
     <color name="navdrawer_text_color">@color/body_text_1</color>
-    <color name="navdrawer_text_color_selected">@color/bg_state_pressed</color>
+    <color name="navdrawer_text_color_selected">@color/material_indigo_700</color>
     <color name="navdrawer_icon_tint">#888</color>
     <color name="navdrawer_icon_tint_selected">@color/black_transparent</color>
 

@@ -1,55 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
-	android:layout_height="wrap_content"
-	android:layout_marginBottom="5dp"
+	android:layout_height="88dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
 	android:orientation="horizontal" >
 
 	<ImageView
 		android:id="@+id/gallery_image"
-		android:layout_width="50dp"
-        android:layout_height="150dp"
-        android:scaleType="centerCrop"
-		android:layout_alignParentLeft="true"
-		android:layout_alignParentTop="true"
+		android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:scaleType="fitCenter"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="16dp"
 		android:src="@drawable/ic_launcher" />
 	
-	<LinearLayout 
-		android:layout_width="wrap_content"
-		android:layout_height="150dp"
-		android:orientation="vertical"
-		android:layout_marginLeft="5dp"
-		android:layout_toRightOf="@id/gallery_image">
+    <LinearLayout
+        android:id="@+id/centralpart"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:orientation="vertical"
+        >
 
-		<TextView
-			android:id="@+id/gallery_movie_date"
-			android:layout_marginTop="2dp"
-			android:text=""
-			android:textColor="#999999"
-			android:textSize="14sp"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:ellipsize="end"
-			/>
-	    	    
-		<TextView
-			android:id="@+id/gallery_text"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="un item"
-			android:textStyle="bold"
-			android:textColor="@color/mzorz_bg"
-			android:textSize="18sp"/>
-	
-		<TextView
-			android:id="@+id/gallery_movie_genre"
-			android:text="una descripcion"
-			android:textColor="#000000"
-			android:textSize="14sp"
-			android:layout_width="wrap_content"
-			android:ellipsize="end"
-			android:layout_height="100dp"
-			/>
-	
-	</LinearLayout>
-</RelativeLayout>
+        <TextView
+            android:id="@+id/project_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="un item"
+            android:maxLines="1"
+            android:textColor="@color/body_text_1"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/project_brief"
+            android:text="una descripcion"
+            android:textColor="@color/body_text_1"
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/rightpart"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/project_date"
+            android:text="2014"
+            android:textColor="@color/body_text_2"
+            android:textSize="10sp"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:id="@+id/project_downloads"
+            android:text="D/L: 500M"
+            android:textColor="@color/body_text_2"
+            android:textSize="10sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <ImageView
+            android:id="@+id/favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_star_rate_black_48dp"/>
+    </LinearLayout>
+</LinearLayout>

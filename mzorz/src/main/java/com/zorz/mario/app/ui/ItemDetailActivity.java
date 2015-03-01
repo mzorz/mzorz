@@ -61,18 +61,6 @@ public class ItemDetailActivity extends BaseActivity {
 
 	private void initializeButtons(){
 
-//		SquareImageView menuButton = new SquareImageView(getContext());
-//		menuButton.setBackgroundResource(R.drawable.ic_atras);
-//		menuButton.setOnClickListener(new OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				ItemDetailActivity.this.onBackPressed();
-//				overridePendingTransition(R.anim.slide_out_right, R.anim.slide_in_left);
-//
-//			}
-//		});
-//		addLeftViewToActionBar(menuButton);
-//
         toolbar.setNavigationIcon(R.drawable.ic_up);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,8 +83,6 @@ public class ItemDetailActivity extends BaseActivity {
             String strTmp = projectItem.description;
             if (strTmp.length() == 0)
                 strTmp = getContext().getResources().getString(R.string.no_title);
-//			TextView txtDesc = (TextView)findViewById(R.id.item_detail);
-//			txtDesc.setText(Html.fromHtml(strTmp));
 
             myWebView = (WebView) findViewById(R.id.webview);
             myWebView.loadData(strTmp,"text/html","utf-8");
@@ -174,11 +160,15 @@ public class ItemDetailActivity extends BaseActivity {
                     R.layout.fragment_item_image, container, false);
 
             if (projectItem.images != null){
-                Picasso.with(getActivity())
-                        .load(projectItem.images != null ? projectItem.images.get(imageIndex).url : null)
-                        .placeholder(R.drawable.mz_logo_splash_ic)
-                        .error(R.drawable.mz_logo_splash_ic)
-                        .into((ImageView)rootView.findViewById(R.id.itempic));
+                try{
+                    Picasso.with(getActivity())
+                            .load(projectItem.images != null ? projectItem.images.get(imageIndex).url : null)
+                            .placeholder(R.drawable.placeholder_square_mariol)
+                            .error(R.drawable.placeholder_square_mariol)
+                            .into((ImageView)rootView.findViewById(R.id.itempic));
+                } catch (Exception ex ){
+                    ex.printStackTrace();
+                }
             }
 
             rootView.setOnClickListener(new OnClickListener() {
