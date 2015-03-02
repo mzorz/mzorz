@@ -13,8 +13,9 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
+<!--<android.support.v4.widget.DrawerLayout-->
 
-<android.support.v4.widget.DrawerLayout
+<com.zorz.mario.app.ui.components.HackyDrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".HomeActivity"
@@ -67,4 +68,5 @@
 
     </LinearLayout>
 
-</android.support.v4.widget.DrawerLayout>
+</com.zorz.mario.app.ui.components.HackyDrawerLayout>
+<!--</android.support.v4.widget.DrawerLayout>-->
