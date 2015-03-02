@@ -38,6 +38,10 @@ public class ProjectsListAdapter extends BaseAdapter {
 	public void setProjectsList(List<ProjectItem> a_arrList){
 		this.items = a_arrList;
 	}
+
+    public List<ProjectItem> getProjectsList(){
+        return this.items;
+    }
 	
 	/*
 	 * (non-Javadoc)

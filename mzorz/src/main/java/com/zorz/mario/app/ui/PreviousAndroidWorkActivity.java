@@ -18,11 +18,15 @@ import com.zorz.mario.R;
 import com.zorz.mario.app.ui.adapter.ProjectsListAdapter;
 import com.zorz.mario.api.Event;
 import com.zorz.mario.api.Service;
+import com.zorz.mario.model.ComparatorDL;
+import com.zorz.mario.model.ComparatorId;
+import com.zorz.mario.model.ComparatorYear;
 import com.zorz.mario.model.ProjectItem;
 import com.zorz.mario.model.ProjectsResponse;
 import com.zorz.mario.model.favorites.FavoriteHandler;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class PreviousAndroidWorkActivity extends BaseActivity {
 	
@@ -88,9 +92,9 @@ public class PreviousAndroidWorkActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_search:
-                Log.d(TAG, "SEARCH PRESSED");
-                return true;
+//            case R.id.action_search:
+//                Log.d(TAG, "SEARCH PRESSED");
+//                return true;
             case R.id.action_filter:
                 Log.d(TAG, "FILTER PRESSED");
                 return true;
@@ -107,6 +111,36 @@ public class PreviousAndroidWorkActivity extends BaseActivity {
                     projsAdapter.setProjectsList(projectsCache.projects != null ? projectsCache.projects : null);
                 }
                 projsAdapter.notifyDataSetChanged();
+                return true;
+
+            case R.id.orderbydownload:
+                Log.d(TAG, "Order by download");
+                if (bShowFavoritesOnly)
+                    Collections.sort(projsAdapter.getProjectsList(), new ComparatorDL());
+                else
+                    Collections.sort(projsAdapter.getProjectsList(), new ComparatorDL());
+                projsAdapter.notifyDataSetChanged();
+
+                return true;
+
+            case R.id.orderbyyear:
+                Log.d(TAG, "Order by YEAR");
+                if (bShowFavoritesOnly)
+                    Collections.sort(projsAdapter.getProjectsList(), new ComparatorYear());
+                else
+                    Collections.sort(projsAdapter.getProjectsList(), new ComparatorYear());
+
+                projsAdapter.notifyDataSetChanged();
+                return true;
+
+            case R.id.orderbyimportance:
+                Log.d(TAG, "Order by IMPORTANCE");
+                if (bShowFavoritesOnly)
+                    Collections.sort(projsAdapter.getProjectsList(), new ComparatorId());
+                else
+                    Collections.sort(projsAdapter.getProjectsList(), new ComparatorId());
+                projsAdapter.notifyDataSetChanged();
+
                 return true;
 
         }

@@ -4,11 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.zorz.mario.app.ui.BaseActivity">
 
-    <item android:id="@+id/action_search"
-        android:icon="@drawable/ic_search_white_48dp"
-        android:title="Search"
-        app:showAsAction="ifRoom"
-        />
+    <!--<item android:id="@+id/action_search"-->
+        <!--android:icon="@drawable/ic_search_white_48dp"-->
+        <!--android:title="Search"-->
+        <!--app:showAsAction="ifRoom"-->
+        <!--/>-->
 
     <item android:id="@+id/action_filter"
         android:icon="@drawable/ic_filter_list_white_48dp"
