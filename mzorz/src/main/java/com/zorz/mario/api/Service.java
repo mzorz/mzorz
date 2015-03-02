@@ -30,8 +30,8 @@ public class Service {
 
     private static final String TAG = Service.class.getName();
 
-    //public static final String END_POINT = "http://192.241.162.17:8080/mzorzcv/api/v1";
-    public static final String END_POINT = "http://192.168.0.21:8080/mzorzcv/api/v1";
+    public static final String END_POINT = "http://192.241.162.17:8080/mzorzcv/api/v1";
+    //public static final String END_POINT = "http://192.168.0.21:8080/mzorzcv/api/v1";
 
     private static Gson gson = new GsonBuilder()
             .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
