@@ -27,6 +27,7 @@ import com.zorz.mario.model.favorites.FavoriteHandler;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class PreviousAndroidWorkActivity extends BaseActivity {
 	
@@ -35,6 +36,7 @@ public class PreviousAndroidWorkActivity extends BaseActivity {
 	private ProjectsListAdapter projsAdapter;
     private ProjectsResponse projectsCache;
     private boolean bShowFavoritesOnly;
+    private int lastCriteriaSelected = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,11 +74,60 @@ public class PreviousAndroidWorkActivity extends BaseActivity {
                 }
             }
         });
-		
-		
-	}
 
-	
+
+        if (savedInstanceState != null){
+            projectsCache = savedInstanceState.getParcelable(ConstantsMzorz.MZORZ_PROJS);
+            lastCriteriaSelected = savedInstanceState.getInt(ConstantsMzorz.MZORZ_CRITERIA,0);
+            bShowFavoritesOnly = savedInstanceState.getBoolean(ConstantsMzorz.MZORZ_FAV_MODE,false);
+
+            //now recreate conditions
+            recreateListConditions();
+
+        }
+
+
+    }
+
+    private void recreateListConditions(){
+        FavoriteHandler.updateServerListWithLocalFavlistInfo(this, projectsCache);
+        if (bShowFavoritesOnly)
+            projsAdapter.setProjectsList(FavoriteHandler.getFavorites(this, "android").projects);
+        else{
+            projsAdapter.setProjectsList(projectsCache.projects != null ? projectsCache.projects : null);
+        }
+
+        switch(lastCriteriaSelected){
+
+            case R.id.orderbydownload:
+                Log.d(TAG, "Order by download");
+                updateSortingCriteria(new ComparatorDL());
+                break;
+
+            case R.id.orderbyyear:
+                Log.d(TAG, "Order by YEAR");
+                updateSortingCriteria(new ComparatorYear());
+                break;
+
+            case R.id.orderbyimportance:
+            default:
+                Log.d(TAG, "Order by IMPORTANCE");
+                updateSortingCriteria(new ComparatorId());
+                break;
+        }
+
+    }
+
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putParcelable(ConstantsMzorz.MZORZ_PROJS, projectsCache);
+        savedInstanceState.putInt(ConstantsMzorz.MZORZ_CRITERIA,lastCriteriaSelected);
+        savedInstanceState.putBoolean(ConstantsMzorz.MZORZ_FAV_MODE,bShowFavoritesOnly);
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+
 	 @Override
 	 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
@@ -87,6 +138,15 @@ public class PreviousAndroidWorkActivity extends BaseActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_projects, menu);
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        //MenuItem item = menu.getItem(0);
+        MenuItem item = menu.findItem(R.id.favorites);
+        if (item != null)
+            item.setChecked(bShowFavoritesOnly);
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -115,32 +175,20 @@ public class PreviousAndroidWorkActivity extends BaseActivity {
 
             case R.id.orderbydownload:
                 Log.d(TAG, "Order by download");
-                if (bShowFavoritesOnly)
-                    Collections.sort(projsAdapter.getProjectsList(), new ComparatorDL());
-                else
-                    Collections.sort(projsAdapter.getProjectsList(), new ComparatorDL());
-                projsAdapter.notifyDataSetChanged();
-
+                updateSortingCriteria(new ComparatorDL());
+                lastCriteriaSelected = item.getItemId();
                 return true;
 
             case R.id.orderbyyear:
                 Log.d(TAG, "Order by YEAR");
-                if (bShowFavoritesOnly)
-                    Collections.sort(projsAdapter.getProjectsList(), new ComparatorYear());
-                else
-                    Collections.sort(projsAdapter.getProjectsList(), new ComparatorYear());
-
-                projsAdapter.notifyDataSetChanged();
+                updateSortingCriteria(new ComparatorYear());
+                lastCriteriaSelected = item.getItemId();
                 return true;
 
             case R.id.orderbyimportance:
                 Log.d(TAG, "Order by IMPORTANCE");
-                if (bShowFavoritesOnly)
-                    Collections.sort(projsAdapter.getProjectsList(), new ComparatorId());
-                else
-                    Collections.sort(projsAdapter.getProjectsList(), new ComparatorId());
-                projsAdapter.notifyDataSetChanged();
-
+                updateSortingCriteria(new ComparatorId());
+                lastCriteriaSelected = item.getItemId();
                 return true;
 
         }
@@ -161,6 +209,11 @@ public class PreviousAndroidWorkActivity extends BaseActivity {
     protected void onStop() {
         Application.getEventBus().unregister(this);
         super.onStop();
+    }
+
+    private void updateSortingCriteria(Comparator comp){
+        Collections.sort(projsAdapter.getProjectsList(), comp);
+        projsAdapter.notifyDataSetChanged();
     }
 
     public void onEvent(Event.AndroidProjectsLoadStartEvent event) {
