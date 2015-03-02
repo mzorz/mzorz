@@ -19,64 +19,27 @@ import com.zorz.mario.model.favorites.FavoriteHandler;
 
 import java.util.ArrayList;
 
-public class PreviousOtherWorkActivity extends BaseActivity {
-	
-	private static String TAG = "Zorz";
-	private ListView listProjs;
-	private ProjectsListAdapter projsAdapter;
+public class PreviousOtherWorkActivity extends BasePreviousWorkActivity {
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		listProjs = (ListView)findViewById(R.id.gallery);
-		setActionBarTitle(getString(R.string.mn_other));
+    private static String TAG = "Zorz";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setActionBarTitle(getString(R.string.mn_other));
         setActionBarIcon(R.drawable.ic_ab_drawer);
-		//DataBaseManager.initializeDB(this);
         setDrawerSelectedOption(R.id.btnOtherProjects);
+        projectType = "other";
+    }
 
-        projsAdapter = new ProjectsListAdapter(PreviousOtherWorkActivity.this, new ArrayList<ProjectItem>());
-        listProjs.setEmptyView(findViewById(android.R.id.empty));
-		listProjs.setAdapter(projsAdapter);
-
-		listProjs.setOnItemClickListener(new OnItemClickListener() {
-
-            /*
-             * (non-Javadoc)
-             * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView, android.view.View, int, long)
-             */
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1,
-                                    int position, long arg3) {
-                if (null != projsAdapter) {
-                    //get touched object
-                    ProjectItem newsobj = (ProjectItem) projsAdapter.getItem(position);
-
-                    Intent i = new Intent(getContext(), ItemDetailActivity.class);
-                    i.putExtra(ConstantsMzorz.MZORZ_ITEM, newsobj);
-
-                    startActivityForResult(i, 500);
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                }
-            }
-        });
-		
-		
-	}
-
-	
-	 @Override
-	 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-	 }	
-	
-	@Override
-	protected void onStart() {
-		super.onStart();
+    @Override
+    protected void onStart() {
+        super.onStart();
 
         Application.getEventBus().register(this);
-        Service.getInstance().getOtherProjects();
-	}
+        if (projectsCache == null)
+            Service.getInstance().getOtherProjects();
+    }
 
     @Override
     protected void onStop() {
@@ -94,7 +57,8 @@ public class PreviousOtherWorkActivity extends BaseActivity {
             Toast.makeText(this, R.string.error_no_items_found, Toast.LENGTH_SHORT).show();
         else{
             FavoriteHandler.updateServerListWithLocalFavlistInfo(this, event.object);
-            projsAdapter.setProjectsList(event.object.projects);
+            projectsCache = event.object;
+            projsAdapter.setProjectsList(projectsCache.projects);
             projsAdapter.notifyDataSetChanged();
         }
     }

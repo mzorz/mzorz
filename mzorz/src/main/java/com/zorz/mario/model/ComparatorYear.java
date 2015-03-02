@@ -11,7 +11,8 @@ public class ComparatorYear implements Comparator<ProjectItem> {
     public int compare(ProjectItem o1, ProjectItem o2){
 
         if (o1 != null && o2 != null && o1.date != null && o2.date != null)
-            return o1.date.compareTo(o2.date);
+            return o2.date.compareTo(o1.date);
+            //descending
 
         return -1;
     }
