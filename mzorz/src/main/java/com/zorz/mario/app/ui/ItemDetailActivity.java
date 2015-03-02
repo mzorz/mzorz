@@ -30,6 +30,7 @@ public class ItemDetailActivity extends BaseActivity {
     protected ProjectItem projectItem;
     private ViewPager viewPager;
     private PageIndicator mIndicator;
+    private int currItem = 0;
 
     private WebView myWebView;
 
@@ -39,7 +40,12 @@ public class ItemDetailActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_item_detail);
 
-        projectItem = getIntent().getParcelableExtra(ConstantsMzorz.MZORZ_ITEM);
+        if (savedInstanceState != null){
+            projectItem = savedInstanceState.getParcelable(ConstantsMzorz.MZORZ_ITEM);
+            currItem = savedInstanceState.getInt("currItemIndex", 0);
+        }
+        else
+            projectItem = getIntent().getParcelableExtra(ConstantsMzorz.MZORZ_ITEM);
 
 		setActionBarTitle(projectItem.title);
 
@@ -57,7 +63,14 @@ public class ItemDetailActivity extends BaseActivity {
 		super.onStart();
 
 	}
-	
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putParcelable(ConstantsMzorz.MZORZ_ITEM, projectItem);
+        savedInstanceState.putInt("currItemIndex",viewPager.getCurrentItem());
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
 
 	private void initializeButtons(){
 
@@ -92,6 +105,7 @@ public class ItemDetailActivity extends BaseActivity {
 
         viewPager = (ViewPager)findViewById(R.id.pager);
         viewPager.setAdapter(new ItemDetailPagerAdapter(getSupportFragmentManager()));
+        viewPager.setOffscreenPageLimit(projectItem.images.size()-1);
         viewPager.setOnPageChangeListener(new android.support.v4.view.ViewPager.OnPageChangeListener() {
 
             public void onPageScrollStateChanged(int i)
@@ -107,6 +121,8 @@ public class ItemDetailActivity extends BaseActivity {
             }
 
         });
+
+        viewPager.setCurrentItem(currItem);
 
         mIndicator = (CirclePageIndicator)findViewById(R.id.indicator);
         mIndicator.setViewPager(viewPager);
@@ -126,9 +142,10 @@ public class ItemDetailActivity extends BaseActivity {
 
         @Override
         public Fragment getItem(int position) {
-            OneImageFragment fragment = new OneImageFragment();
-            fragment.setImageIndex(position);
-            fragment.setProjectItem(projectItem);
+//            OneImageFragment fragment = new OneImageFragment();
+//            fragment.setImageIndex(position);
+//            fragment.setProjectItem(projectItem);
+            OneImageFragment fragment = OneImageFragment.newInstance(projectItem, position);
 
             return fragment;
         }
@@ -140,17 +157,31 @@ public class ItemDetailActivity extends BaseActivity {
         private int imageIndex;
         private ProjectItem projectItem;
 
-        public void setProjectItem(ProjectItem item){
-            this.projectItem = item;
-        }
 
-        public void setImageIndex(int idx){
-            this.imageIndex = idx;
+        static OneImageFragment newInstance(ProjectItem item, int imgIdx) {
+            OneImageFragment f = new OneImageFragment();
+
+            // Supply num input as an argument.
+            Bundle args = new Bundle();
+            args.putInt("num", imgIdx);
+            args.putParcelable(ConstantsMzorz.MZORZ_ITEM, item);
+            f.setArguments(args);
+
+            return f;
         }
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
+            imageIndex = getArguments() != null ? getArguments().getInt("num") : 0;
+            projectItem = getArguments() != null ? (ProjectItem)(getArguments().getParcelable(ConstantsMzorz.MZORZ_ITEM)) : null;
+
+            if (savedInstanceState != null) {
+                //Restore the fragment's state here
+                projectItem = savedInstanceState.getParcelable(ConstantsMzorz.MZORZ_ITEM);
+                imageIndex = savedInstanceState.getInt(ConstantsMzorz.MZORZ_ITEM_PAGE, 0);
+            }
+
         }
 
         @Override
@@ -185,6 +216,23 @@ public class ItemDetailActivity extends BaseActivity {
 
 
             return rootView;
+        }
+
+
+        @Override
+        public void onActivityCreated(Bundle savedInstanceState) {
+            super.onActivityCreated(savedInstanceState);
+            if (savedInstanceState != null) {
+                //Restore the fragment's state here
+                projectItem = savedInstanceState.getParcelable(ConstantsMzorz.MZORZ_ITEM);
+                imageIndex = savedInstanceState.getInt(ConstantsMzorz.MZORZ_ITEM_PAGE, 0);
+            }
+        }
+        @Override
+        public void onSaveInstanceState(Bundle outState) {
+            outState.putParcelable(ConstantsMzorz.MZORZ_ITEM, projectItem);
+            outState.putInt(ConstantsMzorz.MZORZ_ITEM_PAGE, imageIndex);
+            super.onSaveInstanceState(outState);
         }
     }
 

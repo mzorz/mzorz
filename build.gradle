@@ -12,6 +12,7 @@ allprojects {
     repositories {
         maven { url "http://jzaccone.github.io/SlidingMenu-aar" }
         maven { url "http://dl.bintray.com/populov/maven" }
+        maven { url "http://repo1.maven.org/maven2/com/github/chrisbanes/photoview/library/1.2.3/"}
         jcenter()
     }
 }

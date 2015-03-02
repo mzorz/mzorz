@@ -2,6 +2,10 @@ package com.zorz.mario.app.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -68,8 +72,29 @@ public class PreviousAndroidWorkActivity extends BaseActivity {
 	 @Override
 	 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-	 }	
-	
+	 }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_projects, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                Log.d(TAG, "SEARCH PRESSED");
+                return true;
+            case R.id.action_filter:
+                Log.d(TAG, "FILTER PRESSED");
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 	@Override
 	protected void onStart() {
 		super.onStart();

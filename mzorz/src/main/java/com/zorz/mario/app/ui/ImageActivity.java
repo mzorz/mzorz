@@ -20,6 +20,8 @@ import com.zorz.mario.ConstantsMzorz;
 import com.zorz.mario.R;
 import com.zorz.mario.model.ProjectItem;
 
+import uk.co.senab.photoview.PhotoViewAttacher;
+
 public class ImageActivity extends BaseActivity {
 
 	private static String TAG = "Zorz";
@@ -33,8 +35,13 @@ public class ImageActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_item_image);
 
-        projectItem = getIntent().getParcelableExtra(ConstantsMzorz.MZORZ_ITEM);
-        currentPage = getIntent().getIntExtra(ConstantsMzorz.MZORZ_ITEM_PAGE, 0);
+        if (savedInstanceState != null){
+            currentPage = savedInstanceState.getInt(ConstantsMzorz.MZORZ_ITEM_PAGE);
+            projectItem = savedInstanceState.getParcelable(ConstantsMzorz.MZORZ_ITEM);
+        } else {
+            projectItem = getIntent().getParcelableExtra(ConstantsMzorz.MZORZ_ITEM);
+            currentPage = getIntent().getIntExtra(ConstantsMzorz.MZORZ_ITEM_PAGE, 0);
+        }
 
 		initializeButtons();
 
@@ -45,6 +52,13 @@ public class ImageActivity extends BaseActivity {
 		super.onStart();
 
 	}
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putParcelable(ConstantsMzorz.MZORZ_ITEM, projectItem);
+        savedInstanceState.putInt(ConstantsMzorz.MZORZ_ITEM_PAGE, currentPage);
+        super.onSaveInstanceState(savedInstanceState);
+    }
 
 
 	private void initializeButtons(){
@@ -87,6 +101,8 @@ public class ImageActivity extends BaseActivity {
 
         });
 
+        viewPager.setCurrentItem(currentPage);
+
         mIndicator = (CirclePageIndicator)findViewById(R.id.indicator);
         mIndicator.setViewPager(viewPager);
 
@@ -104,9 +120,10 @@ public class ImageActivity extends BaseActivity {
 
         @Override
         public Fragment getItem(int position) {
-            OneImageFragment fragment = new OneImageFragment();
-            fragment.setImageIndex(position);
-            fragment.setProjectItem(projectItem);
+//            OneImageFragment fragment = new OneImageFragment();
+//            fragment.setImageIndex(position);
+//            fragment.setProjectItem(projectItem);
+            OneImageFragment fragment = OneImageFragment.newInstance(projectItem, position);
 
             return fragment;
         }
@@ -117,18 +134,32 @@ public class ImageActivity extends BaseActivity {
 
         private int imageIndex;
         private ProjectItem projectItem;
+        private PhotoViewAttacher mAttacher;
+        private ImageView mImageView;
 
-        public void setProjectItem(ProjectItem item){
-            this.projectItem = item;
-        }
+        static OneImageFragment newInstance(ProjectItem item, int imgIdx) {
+            OneImageFragment f = new OneImageFragment();
 
-        public void setImageIndex(int idx){
-            this.imageIndex = idx;
+            // Supply num input as an argument.
+            Bundle args = new Bundle();
+            args.putInt("num", imgIdx);
+            args.putParcelable(ConstantsMzorz.MZORZ_ITEM, item);
+            f.setArguments(args);
+
+            return f;
         }
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
+            imageIndex = getArguments() != null ? getArguments().getInt("num") : 0;
+            projectItem = getArguments() != null ? (ProjectItem)(getArguments().getParcelable(ConstantsMzorz.MZORZ_ITEM)) : null;
+
+            if (savedInstanceState != null) {
+                //Restore the fragment's state here
+                projectItem = savedInstanceState.getParcelable(ConstantsMzorz.MZORZ_ITEM);
+                imageIndex = savedInstanceState.getInt(ConstantsMzorz.MZORZ_ITEM_PAGE, 0);
+            }
         }
 
         @Override
@@ -137,16 +168,40 @@ public class ImageActivity extends BaseActivity {
             ViewGroup rootView = (ViewGroup) inflater.inflate(
                     R.layout.fragment_item_image_full, container, false);
 
+            mImageView = (ImageView) rootView.findViewById(R.id.itempic);
+
             if (projectItem.images != null){
                 Picasso.with(getActivity())
                         .load(projectItem.images != null ? projectItem.images.get(imageIndex).url : null)
                         .placeholder(R.drawable.mz_logo_splash_ic)
                         .error(R.drawable.mz_logo_splash_ic)
                         .into((ImageView)rootView.findViewById(R.id.itempic));
+
+                if (mAttacher == null)
+                    mAttacher = new PhotoViewAttacher(mImageView);
+                else
+                    mAttacher.update();
             }
 
             return rootView;
         }
+
+        @Override
+        public void onActivityCreated(Bundle savedInstanceState) {
+            super.onActivityCreated(savedInstanceState);
+            if (savedInstanceState != null) {
+                //Restore the fragment's state here
+                projectItem = savedInstanceState.getParcelable(ConstantsMzorz.MZORZ_ITEM);
+                imageIndex = savedInstanceState.getInt(ConstantsMzorz.MZORZ_ITEM_PAGE, 0);
+            }
+        }
+        @Override
+        public void onSaveInstanceState(Bundle outState) {
+            outState.putParcelable(ConstantsMzorz.MZORZ_ITEM, projectItem);
+            outState.putInt(ConstantsMzorz.MZORZ_ITEM_PAGE, imageIndex);
+            super.onSaveInstanceState(outState);
+        }
+
     }
 
 }
