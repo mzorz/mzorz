@@ -36,6 +36,7 @@ public class PreviousOtherWorkActivity extends BaseActivity {
         setDrawerSelectedOption(R.id.btnOtherProjects);
 
         projsAdapter = new ProjectsListAdapter(PreviousOtherWorkActivity.this, new ArrayList<ProjectItem>());
+        listProjs.setEmptyView(findViewById(android.R.id.empty));
 		listProjs.setAdapter(projsAdapter);
 
 		listProjs.setOnItemClickListener(new OnItemClickListener() {

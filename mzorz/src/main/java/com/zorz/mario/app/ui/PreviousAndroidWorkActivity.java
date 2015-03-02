@@ -19,6 +19,7 @@ import com.zorz.mario.app.ui.adapter.ProjectsListAdapter;
 import com.zorz.mario.api.Event;
 import com.zorz.mario.api.Service;
 import com.zorz.mario.model.ProjectItem;
+import com.zorz.mario.model.ProjectsResponse;
 import com.zorz.mario.model.favorites.FavoriteHandler;
 
 import java.util.ArrayList;
@@ -28,6 +29,8 @@ public class PreviousAndroidWorkActivity extends BaseActivity {
 	private static String TAG = "Zorz";
 	private ListView listProjs;
 	private ProjectsListAdapter projsAdapter;
+    private ProjectsResponse projectsCache;
+    private boolean bShowFavoritesOnly;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,7 @@ public class PreviousAndroidWorkActivity extends BaseActivity {
 
 
         projsAdapter = new ProjectsListAdapter(PreviousAndroidWorkActivity.this, new ArrayList<ProjectItem>());
+        listProjs.setEmptyView(findViewById(android.R.id.empty));
 		listProjs.setAdapter(projsAdapter);
 
 		listProjs.setOnItemClickListener(new OnItemClickListener() {
@@ -90,6 +94,21 @@ public class PreviousAndroidWorkActivity extends BaseActivity {
             case R.id.action_filter:
                 Log.d(TAG, "FILTER PRESSED");
                 return true;
+
+            case R.id.favorites:
+                Log.d(TAG, "Favorites checked");
+                bShowFavoritesOnly = !bShowFavoritesOnly;
+                item.setChecked(bShowFavoritesOnly);
+
+                FavoriteHandler.updateServerListWithLocalFavlistInfo(this, projectsCache);
+                if (bShowFavoritesOnly)
+                    projsAdapter.setProjectsList(FavoriteHandler.getFavorites(this, "android").projects);
+                else{
+                    projsAdapter.setProjectsList(projectsCache.projects != null ? projectsCache.projects : null);
+                }
+                projsAdapter.notifyDataSetChanged();
+                return true;
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -100,7 +119,8 @@ public class PreviousAndroidWorkActivity extends BaseActivity {
 		super.onStart();
 
         Application.getEventBus().register(this);
-        Service.getInstance().getAndroidProjects();
+        if (projectsCache == null)
+            Service.getInstance().getAndroidProjects();
 	}
 
     @Override
@@ -119,7 +139,8 @@ public class PreviousAndroidWorkActivity extends BaseActivity {
             Toast.makeText(this, R.string.error_no_items_found, Toast.LENGTH_SHORT).show();
         else{
             FavoriteHandler.updateServerListWithLocalFavlistInfo(this, event.object);
-            projsAdapter.setProjectsList(event.object.projects);
+            projectsCache = event.object;
+            projsAdapter.setProjectsList(projectsCache.projects);
             projsAdapter.notifyDataSetChanged();
         }
     }

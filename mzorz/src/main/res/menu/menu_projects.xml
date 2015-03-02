@@ -14,6 +14,22 @@
         android:icon="@drawable/ic_filter_list_white_48dp"
         android:title="Filter"
         app:showAsAction="ifRoom"
-        />
+        >
+        <menu>
+            <!-- Notice how these items have each set. -->
+            <item android:id="@+id/favorites"
+                android:title="Show Favorites Only"
+                android:checkable="true" />
+            <item android:id="@+id/orderbydownload"
+                android:title="Order by downloads"
+                />
+            <item android:id="@+id/orderbyyear"
+                android:title="Order by year"
+                />
+            <item android:id="@+id/orderbyimportance"
+                android:title="Order by importance"
+                />
+        </menu>
+    </item>
 
 </menu>
