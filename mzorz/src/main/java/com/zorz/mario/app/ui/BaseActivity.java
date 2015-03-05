@@ -1,5 +1,6 @@
 package com.zorz.mario.app.ui;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -21,6 +22,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.utils.Utils;
 import com.zorz.mario.R;
 import com.zorz.mario.app.ui.components.NavDrawerButton;
 
@@ -226,7 +228,32 @@ public class BaseActivity extends ActionBarActivity implements OnCancelListener 
 		});
 		alert.show();
 	}
-	
+
+    private void showConnectivityError(Activity activity, String errormsg, boolean bShowCancel, DialogInterface.OnClickListener listener){
+
+    }
+
+    protected void showError(Activity activity, String errormsg, boolean bShowCancel, DialogInterface.OnClickListener listener){
+        AlertDialog.Builder alert = new AlertDialog.Builder(activity);
+        alert.setIcon(R.drawable.ic_launcher);
+        alert.setTitle(getString(R.string.message));
+        alert.setMessage(errormsg);
+        if (listener != null){
+            alert.setPositiveButton(getString(R.string.accept_lower), listener);
+        } else {
+            alert.setPositiveButton(getString(R.string.accept_lower), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //finish();
+                    //dismiss();
+                }
+            });
+        }
+        if (bShowCancel)
+            alert.setNegativeButton(getString(R.string.cancel_lower), null);
+        alert.show();
+    }
+
 	@Override
 	public void onBackPressed() {
         if (isTaskRoot()){

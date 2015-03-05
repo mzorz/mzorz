@@ -1,5 +1,6 @@
 package com.zorz.mario.app.ui;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -64,7 +65,12 @@ public class PreviousAndroidWorkActivity extends BasePreviousWorkActivity {
     public void onEvent(Event.AndroidProjectsLoadCompleteEvent event) {
         dismissProgressDialog();
         if (event.object == null || event.object.projects == null || event.object.projects.size() == 0)
-            Toast.makeText(this, R.string.error_no_items_found, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, R.string.error_no_items_found, Toast.LENGTH_SHORT).show();
+            showError(this, getResources().getString(R.string.error_no_items_found), false, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
         else{
             FavoriteHandler.updateServerListWithLocalFavlistInfo(this, event.object);
             projectsCache = event.object;

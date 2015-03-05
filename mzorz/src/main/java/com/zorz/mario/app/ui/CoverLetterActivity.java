@@ -1,5 +1,6 @@
 package com.zorz.mario.app.ui;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -58,7 +59,12 @@ public class CoverLetterActivity extends BaseActivity {
     public void onEvent(Event.CoverLetterLoadCompleteEvent event) {
         dismissProgressDialog();
         if (event.object == null || event.object.data == null)
-            Toast.makeText(this, R.string.error_no_items_found, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, R.string.error_no_items_found, Toast.LENGTH_SHORT).show();
+            showError(this, getResources().getString(R.string.error_no_items_found), false, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
         else{
             //myWebView.loadData(event.object.data,"text/html","utf-8");
             myWebView.loadDataWithBaseURL("file:///asset/", event.object.data,"text/html","utf-8", null);
