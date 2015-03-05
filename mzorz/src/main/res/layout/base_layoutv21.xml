@@ -13,8 +13,9 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<!--<android.support.v4.widget.DrawerLayout-->
 
+<!-- related issue here https://github.com/chrisbanes/PhotoView/issues/31#issuecomment-24500891 -->
+<!--<android.support.v4.widget.DrawerLayout-->
 <com.zorz.mario.app.ui.components.HackyDrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"

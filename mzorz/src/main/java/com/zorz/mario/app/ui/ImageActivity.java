@@ -120,9 +120,6 @@ public class ImageActivity extends BaseActivity {
 
         @Override
         public Fragment getItem(int position) {
-//            OneImageFragment fragment = new OneImageFragment();
-//            fragment.setImageIndex(position);
-//            fragment.setProjectItem(projectItem);
             OneImageFragment fragment = OneImageFragment.newInstance(projectItem, position);
 
             return fragment;

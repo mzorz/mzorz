@@ -2,6 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
+    <!-- related issue here https://github.com/chrisbanes/PhotoView/issues/31#issuecomment-24500891 -->
     <com.zorz.mario.app.ui.components.HackyViewPager
         android:id="@+id/pager"
         android:layout_width="fill_parent"
